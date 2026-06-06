@@ -1,65 +1,724 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { Easing, motion } from "framer-motion";
+import Image from "next/image";
+import Counter from "@/components/Counter";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { BookOpenIcon, MapPin } from "lucide-react";
+import {
+  events,
+  galleryItems,
+  programs,
+  works,
+  corperatePartners,
+} from "@/utils/lib";
+import { useState } from "react";
+
+export default function HomePage() {
+  // --- ANIMATION CONFIGURATIONS ---
+  const cubicBezierEase: Easing = [0.25, 1, 0.5, 1];
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+    },
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 },
+    },
+  };
+
+  const [volunteerName, setVolunteerName] = useState("");
+  const [volunteerPhone, setVolunteerPhone] = useState("");
+  const [volunteerEmail, setVolunteerEmail] = useState("");
+  const [volunteerLocation, setVolunteerLocation] = useState("");
+  const [volunteerReason, setVolunteerReason] = useState("");
+
+  // Newsletter State
+  const [subscriberEmail, setSubscriberEmail] = useState("");
+
+  const handleVolunteerSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    alert(`Volunteer request submitted for: ${volunteerName}`);
+  };
+
+  const handleSubscribeSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    alert(`Subscribed successfully with: ${subscriberEmail}`);
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="w-full bg-white dark:bg-zinc-950 font-sans text-[#171717] dark:text-zinc-50 selection:bg-red-600 selection:text-white overflow-x-hidden transition-colors duration-300">
+      {/* =========================================================================
+          1. NAVIGATION BAR (Now receiving theme control props)
+         ========================================================================= */}
+      <Navbar />
+
+      {/* =========================================================================
+          2. HERO SECTION
+         ========================================================================= */}
+      <section className="relative w-full mt-20 mx-auto px-6 py-12 md:py-20 lg:py-24 bg-[url('/images/gallery/gallery4.png')] bg-cover bg-center bg-no-repeat bg-blend-overlay bg-[#000000d6] overflow-hidden">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
+          {/* Text Content */}
+          <motion.div
+            className="lg:col-span-6 aspect-4/3 w-full"
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <motion.h1
+              variants={fadeInUp}
+              className="font-extrabold tracking-tight text-center lg:text-start text-3xl md:text-4xl lg:text-5xl text-gray-100 leading-[1.1]"
+            >
+              Giving a Helping Hand
+              <br />
+              Building a Brighter Future
+              <br />
+              <span className="text-red-600 dark:text-red-500">Transforming Lives.</span>
+            </motion.h1>
+
+            <motion.p
+              variants={fadeInUp}
+              className="mt-6 text-gray-300 text-center lg:text-start text-base md:text-lg leading-relaxed"
+            >
+              Adorable Foundation International (AFI) is dedicated to helping
+              drug abuse victims, nourishing children, uplifting vulnerable
+              widows, and conducting healthcare outreaches across underserved
+              regions of Africa.
+            </motion.p>
+
+            <motion.div
+              variants={fadeInUp}
+              className="mt-8 flex flex-wrap gap-4"
+            >
+              <a
+                href="/donations"
+                className="rounded-md bg-red-600 px-6 py-3 font-bold text-xs uppercase tracking-wider text-white shadow-md transition-all hover:bg-red-700 hover:shadow-xl"
+              >
+                Donate Now
+              </a>
+              <a
+                href="#volunteer"
+                className="rounded-md border border-gray-300 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-6 py-3 font-bold text-xs uppercase tracking-wider text-gray-700 dark:text-zinc-300 transition-all hover:bg-gray-50 dark:hover:bg-zinc-800 hover:border-gray-400 dark:hover:border-zinc-700"
+              >
+                Become a Volunteer
+              </a>
+            </motion.div>
+          </motion.div>
+
+          {/* Image Canvas Panel */}
+          <motion.div
+            className="relative lg:col-span-6 flex w-full justify-center"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           >
-            Documentation
+            <div className="aspect-4/3 w-full rounded-2xl bg-gray-100 dark:bg-zinc-900 shadow-xl overflow-hidden group">
+              <div
+                className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-102"
+                style={{
+                  backgroundImage: "url('/images/gallery/gallery4.png')",
+                }}
+              >
+                {/* Fallback overlay block matching composition image layout */}
+                <div className="w-full h-full flex items-center justify-center bg-black/10 text-white font-medium p-6 text-center text-xs backdrop-blur-[1px]">
+                  [
+                  <Image
+                    src="/images/ascada_logo.png"
+                    alt="Composition Placeholder"
+                    width={200}
+                    height={150}
+                    className="mx-auto mb-4 opacity-50"
+                  />
+                  ]
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          3. STATS BAND
+         ========================================================================= */}
+      <section className="bg-gray-50 dark:bg-zinc-900/40 border-y border-gray-100 dark:border-zinc-900 py-10 shadow-sm transition-colors duration-300">
+        <div className="mx-auto w-full px-6">
+          <motion.div
+            className="grid grid-cols-2 gap-8 md:grid-cols-4 text-center"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+          >
+            {works.map((stat, i) => (
+              <motion.div
+                key={i}
+                variants={fadeInUp}
+                className="flex flex-col items-center justify-center border-r border-r-gray-300 dark:border-r-zinc-800 last:border-r-0"
+              >
+                <span className="block font-black text-2xl md:text-3xl lg:text-4xl text-red-600 dark:text-red-500 tracking-tight">
+                  <Counter number={stat.val} />
+                </span>
+                <span className="mt-1 text-xs md:text-sm font-medium text-gray-500 dark:text-zinc-400 uppercase tracking-wide">
+                  {stat.label}
+                </span>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          4. ABOUT AFI SUMMARY SECTION
+         ========================================================================= */}
+      <section className="mx-auto w-full px-6 py-16 md:py-24">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+          >
+            <span className="text-xs font-bold uppercase tracking-widest text-red-600 dark:text-red-500">
+              Who We Are
+            </span>
+            <h2 className="mt-2 font-extrabold text-3xl md:text-4xl text-gray-900 dark:text-white tracking-tight">
+              About AFI
+              <br />
+              <span className="text-red-600 dark:text-red-500 text-xl block mt-1">
+                Uplifting & Restoring Dignity To Lives
+              </span>
+            </h2>
+            <p className="mt-6 text-gray-600 dark:text-zinc-300 text-base md:text-lg leading-relaxed">
+              Adorable Foundation International (AFI) recognizes the critical
+              need for robust, compassionate support systems across Nigeria.
+              Drug abuse and structural hardship devastate countless youths and
+              families each day. We are committed to providing a secure,
+              supportive network to seek medical rehabilitation, vocational
+              education, and basic necessities. Under our flagship campaign
+              ASACADA, we drive strong drug prevention programs in high schools,
+              local governments, and cities to educate and salvage our youth.
+            </p>
+            <div className="mt-8">
+              <a
+                href="/about-us"
+                className="inline-flex items-center rounded-md border border-red-600 dark:border-red-500 px-5 py-2.5 font-bold text-xs uppercase tracking-wider text-red-600 dark:text-red-500 transition-all hover:bg-red-50 dark:hover:bg-red-950/30"
+              >
+                Learn More
+              </a>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="rounded-2xl bg-gray-100 dark:bg-zinc-900 aspect-10/10 overflow-hidden shadow-md"
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div
+              className="w-full h-full bg-cover bg-center transition-transform duration-700 hover:scale-105"
+              style={{ backgroundImage: "url('/images/gallery/founder.png')" }}
+            >
+              <div className="w-full h-full bg-black/5 flex items-end p-6 text-white text-xs font-light tracking-wide bg-linear-to-t from-black/40 to-transparent">
+                <Image
+                  src="/images/ascada_logo.png"
+                  alt="Composition Placeholder"
+                  width={150}
+                  height={100}
+                  className="mx-auto mb-45 opacity-50"
+                />
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          5. OUR PROGRAMS CARD GRID
+         ========================================================================= */}
+      <section className="bg-gray-50/50 dark:bg-zinc-900/20 py-16 md:py-24 border-y border-gray-100 dark:border-zinc-900 transition-colors duration-300">
+        <div className="mx-auto max-w-7xl px-6 text-center">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+          >
+            <h2 className="font-extrabold text-3xl md:text-4xl text-gray-900 dark:text-white tracking-tight">
+              Our Programs
+              <br />
+              <span className="text-red-600 dark:text-red-500 text-xl block mt-1">
+                How We Serve The Community
+              </span>
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-gray-500 dark:text-zinc-400 text-sm md:text-base">
+              Through strategic planning and active field deployment, we run
+              specialized programs that address fundamental survival and
+              developmental needs in our communities.
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={staggerContainer}
+          >
+            {programs.map((prog, index) => (
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                whileHover="hover"
+                className="rounded-xl border border-gray-100 dark:border-zinc-800/60 bg-white dark:bg-zinc-900/50 p-6 text-left shadow-sm transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <div className="h-10 w-10 rounded-lg bg-red-50 dark:bg-red-950/40 flex items-center justify-center text-red-600 dark:text-red-500 mb-5">
+                    <BookOpenIcon size={18} />
+                  </div>
+                  <Image
+                    src={prog.image}
+                    alt={prog.title}
+                    width={400}
+                    height={250}
+                    className="w-full h-40 hover:scale-105 transition-transform rounded-lg mb-5"
+                  />
+                  <h3 className="font-bold text-lg text-gray-900 dark:text-white tracking-tight">
+                    {prog.title}
+                  </h3>
+                  <p className="mt-3 text-sm text-gray-500 dark:text-zinc-400 leading-relaxed">
+                    {prog.desc}
+                  </p>
+                </div>
+                <a
+                  href="/about-us"
+                  className="mt-6 inline-flex items-center text-xs font-bold text-red-600 dark:text-red-500 uppercase tracking-widest hover:text-red-700 dark:hover:text-red-400 transition-colors"
+                >
+                  Learn More <span className="ml-1">→</span>
+                </a>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          6. WHY DRUG PREVENTION MATTERS BANNER
+         ========================================================================= */}
+      <section className="mx-auto max-w-7xl px-6 py-16 md:py-24">
+        <motion.div
+          className="relative rounded-2xl bg-gray-900 dark:bg-zinc-900 text-white p-8 md:p-12 lg:p-16 overflow-hidden shadow-lg grid grid-cols-1 lg:grid-cols-12 items-center gap-8"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          {/* Decorative Gradient Background Graphic */}
+          <div
+            className="absolute bg-center bg-blend-overlay bg-cover bg-[#000000cf] inset-0 bg-[radial-gradient(circle_at_left,rgba(220,38,38,0.15),transparent_50%)]"
+            style={{
+              backgroundImage: "url('/images/gallery/sch_outreach.png')",
+            }}
+          />
+
+          <div className="lg:col-span-7 relative z-10">
+            <h2 className="font-extrabold text-3xl md:text-4xl tracking-tight leading-tight">
+              Why Drug Prevention Matters
+            </h2>
+            <p className="mt-4 text-gray-300 text-sm md:text-base leading-relaxed max-w-xl">
+              Drug abuse destroys families and limits generational futures.
+              Through ASACADA (Drug Rehab & Abuse Awareness) Campaign, we break
+              processing loops to build a healthy ecosystem.
+            </p>
+            <div className="mt-8">
+              <a
+                href="/donations"
+                className="rounded-md bg-red-600 px-5 py-3 font-bold text-xs uppercase tracking-wider text-white shadow-md transition-all hover:bg-red-700"
+              >
+                Support Our Cause
+              </a>
+            </div>
+          </div>
+
+          <div className="lg:col-span-5 aspect-16/10 lg:aspect-auto lg:h-full rounded-xl bg-gray-800/50 dark:bg-zinc-950/50 overflow-hidden relative z-10 border border-white/5">
+            <div
+              className="w-full h-full bg-cover bg-center mix-blend-luminosity transition-transform duration-700 hover:scale-105"
+              style={{
+                backgroundImage: "url('/images/gallery/sch_outreach.png')",
+              }}
+            >
+              <div className="w-full h-full flex items-center justify-center text-xs text-white/30 p-4 text-center backdrop-blur-[0.5px]">
+                <Image
+                  src="/images/ascada_logo.png"
+                  alt="Composition Placeholder"
+                  width={100}
+                  height={50}
+                  className="mx-auto mb-4 opacity-50"
+                />
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* =========================================================================
+          7. UPCOMING EVENTS
+         ========================================================================= */}
+      <section className="bg-gray-50 dark:bg-zinc-900/20 py-16 md:py-24 border-y border-gray-100 dark:border-zinc-900 transition-colors duration-300">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="text-center">
+            <h2 className="font-extrabold text-3xl md:text-4xl text-gray-900 dark:text-white tracking-tight">
+              Recent Events
+              <br />
+              <span className="text-red-600 dark:text-red-500 text-xl block mt-1">
+                Our Latest Mobilizations
+              </span>
+            </h2>
+            <p className="mt-3 text-gray-500 dark:text-zinc-400 text-sm md:text-base">
+              We believe in on-the-ground transparency. Check out some of our
+              recent community outings and upcoming awareness campaign
+              schedules.
+            </p>
+          </div>
+
+          <motion.div
+            className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
+            {events.map((ev, index) => (
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                whileHover={{
+                  scale: 1.01,
+                  boxShadow: "0 10px 25px -5px rgba(0,0,0,0.02)",
+                }}
+                className="flex gap-5 bg-white dark:bg-zinc-900/50 border border-gray-100 dark:border-zinc-800/60 rounded-xl p-5 shadow-sm transition-all"
+              >
+                <div className="flex flex-col items-center justify-center text-center bg-red-50 dark:bg-red-950/30 border border-red-100 dark:border-red-900/40 rounded-l-lg p-3 min-w-17.5 h-full">
+                  <span className="block font-black text-xl text-red-600 dark:text-red-500 leading-none">
+                    {ev.day}
+                  </span>
+                  <span className="block font-bold text-[10px] text-red-600/80 dark:text-red-400/80 uppercase tracking-widest mt-1">
+                    {ev.month}
+                  </span>
+                </div>
+                <div className="flex flex-col justify-between flex-1">
+                  <div>
+                    <Image
+                      src={ev.image}
+                      alt="event image"
+                      width={200}
+                      height={150}
+                      className="mx-auto mb-4 w-full rounded-r-lg rounded-b-none"
+                    />
+                    <span className="text-xs flex gap-1 items-center text-gray-400 dark:text-zinc-500 mt-1 font-medium">
+                      <MapPin className="shrink-0" size={18} /> {ev.loc}
+                    </span>
+                    <h3 className="mt-3 font-bold text-sm md:text-base text-gray-900 dark:text-white leading-snug">
+                      {ev.title}
+                    </h3>
+                    <p className="text-xs text-gray-500 dark:text-zinc-400 mt-1">{ev.desc}</p>
+                  </div>
+                  <a
+                    href="/events"
+                    className="text-xs font-bold text-red-600 dark:text-red-500 uppercase tracking-wider mt-3 hover:underline inline-block"
+                  >
+                    View Details
+                  </a>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          8. GALLERY PREVIEW
+         ========================================================================= */}
+      <section className="mx-auto max-w-7xl px-6 py-16 md:py-24 text-center">
+        <h2 className="font-extrabold text-3xl md:text-4xl text-gray-900 dark:text-white tracking-tight">
+          Gallery Preview
+        </h2>
+
+        <motion.div
+          className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+        >
+          {galleryItems.slice(0, 6).map((item, i) => (
+            <motion.div
+              key={i}
+              variants={fadeInUp}
+              whileHover={{ scale: 1.03, zIndex: 10 }}
+              className="aspect-square rounded-xl bg-gray-100 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 shadow-sm overflow-hidden relative cursor-pointer group"
+            >
+              <div
+                className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                style={{ backgroundImage: `url(${item.image})` }}
+              >
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-bold uppercase tracking-wider">
+                  View
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        <div className="mt-10">
+          <a
+            href="/gallery"
+            className="inline-flex items-center rounded-md bg-red-600 px-6 py-3 font-bold text-xs uppercase tracking-wider text-white shadow-md hover:bg-red-700"
+          >
+            View Gallery
           </a>
         </div>
-      </main>
+      </section>
+
+      {/* =========================================================================
+          9. DONORS & PARTNERS BRAND WALL
+         ========================================================================= */}
+      <section className="bg-gray-50/70 dark:bg-zinc-900/40 border-y border-gray-100 dark:border-zinc-900 py-12 text-center overflow-hidden transition-colors duration-300">
+        <div className="mx-auto max-w-7xl px-6">
+          <span className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-zinc-500">
+            Trusted By & Associated With
+          </span>
+
+          {/* Smooth Continuous Ticker Flex Line */}
+          <div className="flex overflow-hidden select-none group hover-pause border-y border-white/5 py-4 relative z-10">
+            {/* Track 1 */}
+            <div className="flex shrink-0 items-stretch gap-8 min-w-full animate-marquee pr-8">
+              {[
+                ...corperatePartners,
+                ...corperatePartners,
+                ...corperatePartners
+              ].map((brand, idx) => (
+                <div
+                  key={idx}
+                  className="font-extrabold text-sm md:text-base lg:text-lg tracking-tighter text-gray-400 dark:text-zinc-500 select-none uppercase"
+                >
+                  {brand}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          10. FINAL BOTTOM CTA BANNER
+         ========================================================================= */}
+      <section className="mx-auto max-w-5xl px-6 py-16 md:py-24">
+        <motion.div
+          className="rounded-2xl border border-gray-100 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 p-8 md:p-12 shadow-xl flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left transition-colors duration-300"
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <div>
+            <h2 className="font-extrabold text-2xl md:text-3xl text-gray-900 dark:text-white tracking-tight">
+              Your Support Can Change Lives
+            </h2>
+            <p className="mt-2 text-gray-500 dark:text-zinc-400 text-sm md:text-base">
+              Every donation, every volunteer, brings us one step closer to a
+              better tomorrow.
+            </p>
+          </div>
+          <a
+            href="/donations"
+            className="rounded-md bg-red-600 px-6 py-3.5 font-bold text-xs uppercase tracking-wider text-white shadow-md hover:bg-red-700 shrink-0"
+          >
+            Donate Now
+          </a>
+        </motion.div>
+      </section>
+
+      {/* =========================================================================
+          11. VOLUNTEER & SUBSCRIPTION HUB SECTION
+         ========================================================================= */}
+      <div id="volunteer" className="w-full bg-gray-50/50 dark:bg-zinc-950/20 font-sans text-[#171717] dark:text-zinc-50 py-16 px-6 overflow-x-hidden transition-colors duration-300">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+          {/* LEFT BLOCK: BECOME A VOLUNTEER CARD */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: cubicBezierEase }}
+            className="bg-white dark:bg-zinc-900/40 border border-gray-100 dark:border-zinc-800/80 backdrop-blur-md rounded-3xl p-6 md:p-10 shadow-sm flex flex-col justify-between transition-colors duration-300"
+          >
+            <div className="space-y-6">
+              {/* Header Content Alignment */}
+              <div className="space-y-1.5">
+                <span className="text-[10px] font-black uppercase tracking-widest text-red-600 dark:text-red-500 block">
+                  MAKE AN IMPACT
+                </span>
+                <h2 className="font-heading font-black text-2xl text-gray-950 dark:text-white tracking-tight">
+                  Become a Volunteer
+                </h2>
+                <p className="text-xs text-gray-400 dark:text-zinc-400 font-medium leading-relaxed max-w-md">
+                  Your little can change lives. Every volunteer hour counts.
+                  Join our team of passionate field organizers today.
+                </p>
+              </div>
+
+              {/* Form Fields Architecture */}
+              <form onSubmit={handleVolunteerSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <input
+                    type="text"
+                    required
+                    value={volunteerName}
+                    onChange={(e) => setVolunteerName(e.target.value)}
+                    placeholder="Your Name"
+                    className="w-full bg-gray-50/50 dark:bg-zinc-950/40 border border-gray-200/60 dark:border-zinc-800/60 rounded-xl px-4 py-3 text-xs font-medium text-gray-900 dark:text-zinc-100 placeholder-gray-400 dark:placeholder-zinc-600 focus:outline-none focus:border-red-600 dark:focus:border-red-500 focus:ring-1 focus:ring-red-600 dark:focus:ring-red-500 transition-all"
+                  />
+                  <input
+                    type="tel"
+                    required
+                    value={volunteerPhone}
+                    onChange={(e) => setVolunteerPhone(e.target.value)}
+                    placeholder="Phone Number"
+                    className="w-full bg-gray-50/50 dark:bg-zinc-950/40 border border-gray-200/60 dark:border-zinc-800/60 rounded-xl px-4 py-3 text-xs font-medium text-gray-900 dark:text-zinc-100 placeholder-gray-400 dark:placeholder-zinc-600 focus:outline-none focus:border-red-600 dark:focus:border-red-500 focus:ring-1 focus:ring-red-600 dark:focus:ring-red-500 transition-all"
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <input
+                    type="email"
+                    required
+                    value={volunteerEmail}
+                    onChange={(e) => setVolunteerEmail(e.target.value)}
+                    placeholder="Email Address"
+                    className="w-full bg-gray-50/50 dark:bg-zinc-950/40 border border-gray-200/60 dark:border-zinc-800/60 rounded-xl px-4 py-3 text-xs font-medium text-gray-900 dark:text-zinc-100 placeholder-gray-400 dark:placeholder-zinc-600 focus:outline-none focus:border-red-600 dark:focus:border-red-500 focus:ring-1 focus:ring-red-600 dark:focus:ring-red-500 transition-all"
+                  />
+                  <input
+                    type="text"
+                    required
+                    value={volunteerLocation}
+                    onChange={(e) => setVolunteerLocation(e.target.value)}
+                    placeholder="Subject / State Location"
+                    className="w-full bg-gray-50/50 dark:bg-zinc-950/40 border border-gray-200/60 dark:border-zinc-800/60 rounded-xl px-4 py-3 text-xs font-medium text-gray-900 dark:text-zinc-100 placeholder-gray-400 dark:placeholder-zinc-600 focus:outline-none focus:border-red-600 dark:focus:border-red-500 focus:ring-1 focus:ring-red-600 dark:focus:ring-red-500 transition-all"
+                  />
+                </div>
+
+                <textarea
+                  rows={4}
+                  required
+                  value={volunteerReason}
+                  onChange={(e) => setVolunteerReason(e.target.value)}
+                  placeholder="Why do you want to join our outreach efforts?"
+                  className="w-full bg-gray-50/50 dark:bg-zinc-950/40 border border-gray-200/60 dark:border-zinc-800/60 rounded-xl px-4 py-3 text-xs font-medium text-gray-900 dark:text-zinc-100 placeholder-gray-400 dark:placeholder-zinc-600 focus:outline-none focus:border-red-600 dark:focus:border-red-500 focus:ring-1 focus:ring-red-600 dark:focus:ring-red-500 transition-all resize-none leading-relaxed"
+                />
+
+                <motion.button
+                  whileTap={{ scale: 0.98 }}
+                  type="submit"
+                  className="w-full rounded-xl bg-gray-950 dark:bg-red-600 hover:bg-gray-900 dark:hover:bg-red-700 text-white font-heading font-black text-xs uppercase tracking-wider py-3.5 px-4 transition-colors cursor-pointer text-center mt-2"
+                >
+                  Submit Request
+                </motion.button>
+              </form>
+            </div>
+          </motion.div>
+
+          {/* RIGHT BLOCK: SUBSCRIBE TO OUR NEWSLETTER CARD */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1, ease: cubicBezierEase }}
+            className="bg-[#0b1120] dark:bg-zinc-900/20 rounded-3xl p-6 md:p-10 shadow-lg flex flex-col justify-between border border-gray-900 dark:border-zinc-800/60 text-white relative overflow-hidden transition-colors duration-300"
+          >
+            {/* Decorative Subtle Background Glow Effect */}
+            <div className="absolute top-0 right-0 w-48 h-48 bg-red-600/10 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="space-y-6 z-10">
+              {/* Header Meta Content */}
+              <div className="space-y-2">
+                <span className="text-[10px] font-black uppercase tracking-widest text-red-500 block">
+                  STAY UPDATED
+                </span>
+                <h2 className="font-heading font-black text-2xl md:text-3xl text-white tracking-tight leading-tight">
+                  Subscribe to Our
+                  <br />
+                  Newsletter
+                </h2>
+                <p className="text-xs text-gray-400 font-medium leading-relaxed pt-1">
+                  Get immediate access to reports on our local campaigns, video
+                  releases of outings, and general financial transparency
+                  audits.
+                </p>
+              </div>
+
+              {/* Inline Form Block Execution Stage */}
+              <form
+                onSubmit={handleSubscribeSubmit}
+                className="flex flex-col sm:flex-row items-center gap-2 pt-2"
+              >
+                <input
+                  type="email"
+                  required
+                  value={subscriberEmail}
+                  onChange={(e) => setSubscriberEmail(e.target.value)}
+                  placeholder="Enter your email address"
+                  className="w-full sm:flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-xs font-medium text-white placeholder-gray-500 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all"
+                />
+                <motion.button
+                  whileTap={{ scale: 0.98 }}
+                  type="submit"
+                  className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-heading font-black text-xs uppercase tracking-wider py-3.5 px-6 rounded-xl transition-colors cursor-pointer shrink-0"
+                >
+                  Subscribe
+                </motion.button>
+              </form>
+            </div>
+
+            {/* Core Footer Brand Identity & Message Mapping */}
+            <div className="pt-8 mt-8 border-t border-white/5 flex items-center gap-3.5 z-10">
+              {/* Logo Mask Framework */}
+              <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0 border border-white/10">
+                <Image
+                  src="/images/ascada_logo.png"
+                  alt="AFI Logo Seal"
+                  className="w-auto h-auto object-contain"
+                  width={100}
+                  height={100}
+                  onError={(e) => {
+                    // Fallback visual token block if local asset is building
+                    (e.target as HTMLElement).style.display = "none";
+                  }}
+                />
+              </div>
+              <p className="text-[11px] text-gray-400 font-medium leading-relaxed italic">
+                {`"A Social Awareness Campaign Against Drug Abuse (ASACADA) —{" "}`}
+                <span className="text-gray-200 not-italic font-bold">
+                  Save our tomorrow, today.
+                </span>
+                {`"`}
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* =========================================================================
+          11. REGISTRATION & CONTEXT FOOTER
+         ========================================================================= */}
+      <Footer />
     </div>
   );
 }

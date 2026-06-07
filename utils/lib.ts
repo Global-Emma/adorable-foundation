@@ -13,6 +13,24 @@ export interface GalleryItem {
   image: string;
 }
 
+export type EventCardData = {
+  id: string | number;
+  day: string;
+  month: string;
+  year?: string;
+  mainImage: string;
+  title: string;
+  category?: string;
+  location: string;
+  time: string;
+  desc: string;
+};
+
+export type EventCardProps = {
+  event: EventCardData;
+  isPast?: boolean;
+};
+
 export const categories: Category[] = [
   "All",
   "Outreach Programs",
@@ -33,59 +51,94 @@ export const galleryItems: GalleryItem[] = [
     id: "gal-2",
     category: "Rehabilitation",
     title: "Medical Rehabilitation Session Support",
-    image: "/images/gallery/ascada_group_img.png"
+    image: "/images/gallery/ascada_women.png"
   },
   {
     id: "gal-3",
-    category: "School Campaigns",
-    title: "Drug Abuse Prevention Campaign in High Schools",
-    image: "/images/gallery/ascada_group_img.png"
+    category: "Rehabilitation",
+    title: "Medical Rehabilitation Session Support",
+    image: "/images/gallery/sch_outreach.png"
   },
   {
     id: "gal-4",
-    category: "Events",
-    title: "Youth Empowerment Workshop Checkpoint",
-    image: "/images/gallery/ascada_group_img.png"
-
+    category: "School Campaigns",
+    title: "Drug Abuse Prevention Campaign in High Schools",
+    image: "/images/gallery/gallery1.png"
   },
   {
     id: "gal-5",
-    category: "Community Support",
-    title: "Food and Essential Relief Distribution",
-    image: "/images/gallery/ascada_group_img.png"
+    category: "Events",
+    title: "Youth Empowerment Workshop Checkpoint",
+    image: "/images/gallery/gallery2.png"
 
   },
   {
     id: "gal-6",
-    category: "School Campaigns",
-    title: "Awareness Campaign Classroom Session",
-    image: "/images/gallery/ascada_group_img.png"
+    category: "Community Support",
+    title: "Food and Essential Relief Distribution",
+    image: "/images/gallery/gallery3.png"
 
   },
   {
     id: "gal-7",
-    category: "Outreach Programs",
-    title: "Youth Support Action Rally Network",
-    image: "/images/gallery/ascada_group_img.png"
+    category: "School Campaigns",
+    title: "Awareness Campaign Classroom Session",
+    image: "/images/gallery/gallery4.png"
 
   },
   {
     id: "gal-8",
-    category: "Rehabilitation",
-    title: "Recovery Support Group Counseling Session",
-    image: "/images/gallery/ascada_group_img.png"
+    category: "Outreach Programs",
+    title: "Youth Support Action Rally Network",
+    image: "/images/gallery/gallery5.png"
 
   },
   {
     id: "gal-9",
-    category: "Events",
-    title: "Annual AFI Impact Seminar Panel Session", image: "/images/gallery/ascada_group_img.png"
+    category: "Rehabilitation",
+    title: "Recovery Support Group Counseling Session",
+    image: "/images/gallery/gallery6.png"
+
   },
   {
     id: "gal-10",
+    category: "Events",
+    title: "Annual AFI Impact Seminar Panel Session", 
+    image: "/images/gallery/gallery7.png"
+  },
+  {
+    id: "gal-11",
     category: "Community Support",
     title: "Sustenance Materials Distribution Hub",
-    image: "/images/gallery/ascada_group_img.png"
+    image: "/images/gallery/gallery8.png"
+
+  },
+  {
+    id: "gal-12",
+    category: "Community Support",
+    title: "Sustenance Materials Distribution Hub",
+    image: "/images/gallery/gallery9.png"
+
+  },
+  {
+    id: "gal-13",
+    category: "Community Support",
+    title: "Sustenance Materials Distribution Hub",
+    image: "/images/gallery/gallery10.png"
+
+  },
+  {
+    id: "gal-14",
+    category: "Community Support",
+    title: "Sustenance Materials Distribution Hub",
+    image: "/images/gallery/gallery11.png"
+
+  },
+  {
+    id: "gal-15",
+    category: "Community Support",
+    title: "Sustenance Materials Distribution Hub",
+    image: "/images/gallery/gallery12.png"
 
   },
 ];
@@ -135,53 +188,74 @@ export const works = [
   { val: 2068, label: "Happy Volunteers" },
 ];
 
-export const programs = [
-  {
-    title: "ASACADA (Drug Rehab & Abuse Awareness)",
-    desc: "A Social Awareness Campaign Against Drug Abuse. We partner directly with institutions like the NDLEA to conduct rehabilitation programs and raise awareness to guide youth away from chemical addictions",
-    image: "/images/gallery/ascada_group_img.png",
-  },
-  {
-    title: "Child Nutrition & Food Security",
-    desc: "We provide healthy hot meals and supply vital academic textbooks and learning kits to children in local public primary schools.",
-    image: "/images/gallery/ascada_group_img.png",
-  },
-  {
-    title: "Free Medical Services",
-    desc: "Our volunteer medical professionals set up mobile outreach units inside rural communities to distribute life-saving medicine, screen health risks, and treat minor ailments.",
-    image: "/images/gallery/ascada_group_img.png",
-  },
-  {
-    title: "Widow & Female Empowerment",
-    desc: "We supply food materials, grant vocational starter kits (sewing machines, hairdressing setups, food trading scales), and offer quick interest-free small scale loans to vulnerable widows to reclaim self-reliance.",
-    image: "/images/gallery/ascada_women.png",
-  },
-];
 
-export const events = [
+export interface ProgramSchema {
+  id: string; // URL-safe identifier (e.g., "asacada")
+  title: string;
+  tagline: string;
+  desc: string;
+  longDesc: string;
+  mainImage: string;
+  eventCategory: string; // Connects program to event.category
+  keyObjectives: string[];
+}
+
+export const programs: ProgramSchema[] = [
   {
-    day: "12",
-    month: "NOV",
-    title: "Solidarity Campaign Partnering With Enugu NDLEA",
-    loc: "NDLEA HQ, Enugu, Nigeria",
-    image: "/images/gallery/ascada_group_img.png",
-    desc: "Establishing solidarity to push WADA (War Against Drug Abuse) campaigns into rural communities and secondary schools.",
+    id: "asacada",
+    title: "ASACADA (Drug Rehab & Abuse Awareness)",
+    tagline: "A Social Awareness Campaign Against Drug Abuse",
+    desc: "We partner directly with institutions like the NDLEA to conduct rehabilitation programs and raise awareness to guide youth away from chemical addictions.",
+    longDesc: "ASACADA is our flagship institutional intervention initiative. By collaborating closely with the National Drug Law Enforcement Agency (NDLEA), educational boards, and healthcare practitioners, we deploy comprehensive sensitization exercises directly into communities. Our framework targets early-stage teenage exposure, local cultism groups, and high-risk dependencies, providing structured paths to recovery and mental health rehabilitation.",
+    mainImage: "/images/gallery/ascada_group_img.png",
+    eventCategory: "WADA Campaign",
+    keyObjectives: [
+      "Launch anti-drug counseling modules within secondary schools",
+      "Offer community rehabilitation sponsorship pathways",
+      "Build operational synergy with local law enforcement entities",
+    ]
   },
   {
-    day: "26",
-    month: "JUN",
-    title: "Annual Outreach Outing & Orphanage Aid",
-    loc: "Abuja FCT, Nigeria",
-    image: "/images/gallery/ascada_group_img.png",
-    desc: "Providing food rations, clothing bags, and textbooks to vulnerable street kids and local child support organizations.",
+    id: "child-nutrition",
+    title: "Child Nutrition & Food Security",
+    tagline: "Fueling Healthy Minds and Academic Progress",
+    desc: "We provide healthy hot meals and supply vital academic textbooks and learning kits to children in local public primary schools.",
+    longDesc: "Economic barriers should never stifle a child's right to learn. Our Child Nutrition & Food Security program addresses chronic classroom hunger by matching baseline dietary supplements with core academic tools. Through periodic food aid disbursements and institutional textbook installations, we remove obstacles keeping vulnerable children out of the classroom.",
+    mainImage: "/images/gallery/ascada_group_img.png",
+    eventCategory: "Orphanage Aid",
+    keyObjectives: [
+      "Distribute fortified meal kits to rural primary institutions",
+      "Provide complete core curriculum textbooks to underprivileged children",
+      "Track baseline physical development metrics within target communities",
+    ]
   },
   {
-    day: "23",
-    month: "JUN",
-    title: "Community Health Outreach & Counseling",
-    loc: "Enugu SouthEast, Nigeria",
-    image: "/images/gallery/ascada_group_img.png",
-    desc: "Providing drug rehabilitation screening sessions, counseling, and immediate community first-aid distribution.",
+    id: "free-medical",
+    title: "Free Medical Services",
+    tagline: "Bringing Life-Saving Diagnostics to Under-Served Communities",
+    desc: "Our volunteer medical professionals set up mobile outreach units inside rural communities to distribute life-saving medicine, screen health risks, and treat minor ailments.",
+    longDesc: "Access to quality clinical guidance is critically limited in remote suburbs. Our medical wing brings emergency diagnostic testing, preventive health checkups, and standard pharmaceutical allocations right to the doorsteps of rural families. Run entirely by volunteer clinical practitioners, we offer specialized testing loops completely free of charge.",
+    mainImage: "/images/gallery/ascada_group_img.png",
+    eventCategory: "Medical Outreach",
+    keyObjectives: [
+      "Perform free cardiovascular and diabetic screening tests",
+      "Distribute baseline pharmaceutical and first aid stock directly to families",
+      "Conduct prenatal health guidance forums for young mothers",
+    ]
+  },
+  {
+    id: "female-empowerment",
+    title: "Widow & Female Empowerment",
+    tagline: "Restoring Dignity Through Financial and Vocational Independence",
+    desc: "We supply food materials, grant vocational starter kits (sewing machines, hairdressing setups, food trading scales), and offer quick interest-free small scale loans to vulnerable widows to reclaim self-reliance.",
+    longDesc: "Widows and marginalized women face steep systemic obstacles toward economic survival. This initiative transforms dependency into self-sustaining small-scale businesses. By supplying industrial equipment assets alongside interest-free micro-seed funding capital, we empower mothers to establish stable income loops to independently feed and educate their households.",
+    mainImage: "/images/gallery/ascada_women.png",
+    eventCategory: "Regional Outreach",
+    keyObjectives: [
+      "Allocate vocational machines (tailoring, processing, cosmetics setups)",
+      "Issue interest-free microfinance business capital grants",
+      "Deliver local basic financial management and bookkeeping training",
+    ]
   },
 ];
 
@@ -273,58 +347,123 @@ export const partnerBenefit = [
 
 ]
 
-interface UpcomingEvent {
+export interface EventSchema {
   id: string;
   day: string;
   month: string;
+  year: string;
+  category: string;
   title: string;
   location: string;
   time: string;
   desc: string;
-  image: string;
+  mainImage: string;
+  gallery: string[];
+  videos: {
+    title: string;
+    embedUrl: string;
+    thumbnail: string;
+  }[];
 }
 
-export const upcomingEvents: UpcomingEvent[] = [
+export const upcomingEvents: EventSchema[] = [
   {
     id: "evt-1",
     day: "12",
     month: "NOV",
+    year: "2025",
+    category: "WADA Campaign",
     title: "Enugu NDLEA Solidarity WADA Campaign",
     location: "Enugu, Nigeria",
-    time: "8.00AM - 10:00 AM",
+    time: "8:00 AM - 10:00 AM",
     desc: "Under our ASACADA initiative, our South East branch visited the Enugu NDLEA Command to build active solidarity. We coordinated efforts to launch the War Against Drug Abuse (WADA) campaign directly inside high schools, combating chemical dependencies and local cultism among teenagers.",
-    image: "/images/gallery/gallery9.png"
+    mainImage: "/images/gallery/gallery9.png",
+    gallery: [
+      "/images/gallery/gallery9.png",
+      "/images/gallery/gallery1.png",
+      "/images/gallery/gallery4.png",
+      "/images/gallery/gallery5.png"
+    ],
+    videos: [
+      {
+        title: "Campaign Kickoff & High School Outreach Highlights",
+        embedUrl: "/videos/anthem_video.mp4",
+        thumbnail: "/images/gallery/gallery1.png"
+      }
+    ]
   },
   {
     id: "evt-2",
     day: "26",
     month: "JUN",
+    year: "2025",
+    category: "Orphanage Aid",
     title: "Annual AFI Outing & Orphanage Aid",
     location: "Abuja FCT, Nigeria",
     time: "9:00 AM — 4:00 PM",
     desc: "Our global team gathered in Abuja for our annual humanitarian outing. We packaged and distributed hundreds of clothing bags, child nutrition boxes, and academic textbooks to orphanage groups and vulnerable street children in rural FCT neighborhoods.",
-    image: "/images/gallery/gallery2.png"
+    mainImage: "/images/gallery/gallery2.png",
+    gallery: [
+      "/images/gallery/gallery2.png",
+      "/images/gallery/gallery6.png",
+      "/images/gallery/gallery7.png"
+    ],
+    videos: [
+      {
+        title: "Abuja Humanitarian Distribution Overview",
+        embedUrl: "/videos/girl_child.mp4",
+        thumbnail: "/images/gallery/gallery6.png"
+      }
+    ]
   },
   {
     id: "evt-3",
     day: "23",
     month: "JUN",
+    year: "2025",
+    category: "Regional Outreach",
     title: "Annual South East Chapter Rally & Outreach",
-    location: "Enugu, Nigera",
+    location: "Enugu, Nigeria", // Fixed spelling from 'Nigera'
     time: "8:00 AM — 3:00 PM",
     desc: "A major regional campaign held in Enugu, bringing together state representatives from Anambra and Ebonyi. The outing focused on distributing food rations, conducting anti-drug counseling walks in markets, and distributing school supplies to vulnerable primary school kids.",
-    image: "/images/gallery/gallery3.png"
+    mainImage: "/images/gallery/gallery3.png",
+    gallery: [
+      "/images/gallery/gallery3.png",
+      "/images/gallery/gallery8.png",
+      "/images/gallery/gallery10.png"
+    ],
+    videos: [
+      {
+        title: "South East Anti-Drug Market Awareness Walk",
+        embedUrl: "/videos/anthem_video.mp4",
+        thumbnail: "/images/gallery/gallery8.png"
+      }
+    ]
   },
   {
     id: "evt-4",
     day: "15",
     month: "MAR",
+    year: "2026",
+    category: "Medical Outreach",
     title: "Community Health & First Aid Outreach",
     location: "Anambra, Nigeria",
     time: "10:00 AM — 5:00 PM",
     desc: "A specialized health campaign deploying mobile medical booths in rural Anambra markets. AFI volunteer nurses and clinical counselors delivered free physical diagnostic screening, blood pressure monitoring, first aid supplies, and child vaccination guidance.",
-    image: "/images/gallery/gallery12.png"
-  },
+    mainImage: "/images/gallery/gallery12.png",
+    gallery: [
+      "/images/gallery/gallery12.png",
+      "/images/gallery/gallery11.png",
+      "/images/gallery/gallery4.png"
+    ],
+    videos: [
+      {
+        title: "Anambra Mobile Medical Clinic Highlights",
+        embedUrl: "/videos/anthem_video.mp4",
+        thumbnail: "/images/gallery/gallery11.png"
+      }
+    ]
+  }
 ];
 
 export const corperatePartners = [

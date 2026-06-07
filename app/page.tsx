@@ -5,15 +5,17 @@ import Image from "next/image";
 import Counter from "@/components/Counter";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { BookOpenIcon, MapPin } from "lucide-react";
+import { BookOpenIcon } from "lucide-react";
 import {
-  events,
   galleryItems,
   programs,
   works,
   corperatePartners,
+  upcomingEvents,
 } from "@/utils/lib";
 import { useState } from "react";
+import Link from "next/link";
+import EventCard from "@/components/EventCard";
 
 export default function HomePage() {
   // --- ANIMATION CONFIGURATIONS ---
@@ -41,16 +43,107 @@ export default function HomePage() {
   const [volunteerLocation, setVolunteerLocation] = useState("");
   const [volunteerReason, setVolunteerReason] = useState("");
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formStatus, setFormStatus] = useState<{
+    success: boolean;
+    msg: string;
+  } | null>(null);
+
   // Newsletter State
   const [subscriberEmail, setSubscriberEmail] = useState("");
 
-  const handleVolunteerSubmit = (e: React.FormEvent) => {
+  const handleVolunteerSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setFormStatus(null);
+    try {
+      const response = await fetch("/api/volunteer", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: volunteerName,
+          phone: volunteerPhone,
+          email: volunteerEmail,
+          location: volunteerLocation,
+          reason: volunteerReason
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setFormStatus({
+          success: true,
+          msg: "✓ Request transmitted successfully!",
+        });
+        // Reset form fields
+        setVolunteerName("");
+        setVolunteerPhone("");
+        setVolunteerEmail("");
+        setVolunteerLocation("");
+        setVolunteerReason("");
+      } else {
+        setFormStatus({
+          success: false,
+          msg: data.message || "Something went wrong.",
+        });
+      }
+    } catch (error) {
+      setFormStatus({
+        success: false,
+        msg: `Network failure. Please try again. ${error}`,
+      });
+    } finally {
+      setIsSubmitting(false);
+      setFormStatus(null);
+    }
     alert(`Volunteer request submitted for: ${volunteerName}`);
   };
 
-  const handleSubscribeSubmit = (e: React.FormEvent) => {
+  const handleSubscribeSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
+    setFormStatus(null);
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: subscriberEmail
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setFormStatus({
+          success: true,
+          msg: "✓ Request transmitted successfully!",
+        });
+        // Reset form fields
+        setVolunteerName("");
+        setVolunteerPhone("");
+        setVolunteerEmail("");
+        setVolunteerLocation("");
+        setVolunteerReason("");
+      } else {
+        setFormStatus({
+          success: false,
+          msg: data.message || "Something went wrong.",
+        });
+      }
+    } catch (error) {
+      setFormStatus({
+        success: false,
+        msg: `Network failure. Please try again. ${error}`,
+      });
+    } finally {
+      setIsSubmitting(false);
+      setFormStatus(null);
+    }
     alert(`Subscribed successfully with: ${subscriberEmail}`);
   };
 
@@ -60,7 +153,11 @@ export default function HomePage() {
           1. NAVIGATION BAR (Now receiving theme control props)
          ========================================================================= */}
       <Navbar />
-
+      <audio
+        src="/audio/asacada_anthem.mp3"
+        autoPlay
+        className="hidden"
+      ></audio>
       {/* =========================================================================
           2. HERO SECTION
          ========================================================================= */}
@@ -81,7 +178,9 @@ export default function HomePage() {
               <br />
               Building a Brighter Future
               <br />
-              <span className="text-red-600 dark:text-red-500">Transforming Lives.</span>
+              <span className="text-red-600 dark:text-red-500">
+                Transforming Lives.
+              </span>
             </motion.h1>
 
             <motion.p
@@ -233,7 +332,7 @@ export default function HomePage() {
                   alt="Composition Placeholder"
                   width={150}
                   height={100}
-                  className="mx-auto mb-45 opacity-50"
+                  className="mx-auto mb-[25%] opacity-50"
                 />
               </div>
             </div>
@@ -285,7 +384,7 @@ export default function HomePage() {
                     <BookOpenIcon size={18} />
                   </div>
                   <Image
-                    src={prog.image}
+                    src={prog.mainImage}
                     alt={prog.title}
                     width={400}
                     height={250}
@@ -298,12 +397,12 @@ export default function HomePage() {
                     {prog.desc}
                   </p>
                 </div>
-                <a
-                  href="/about-us"
+                <Link
+                  href={`/about-us/${prog.id}`}
                   className="mt-6 inline-flex items-center text-xs font-bold text-red-600 dark:text-red-500 uppercase tracking-widest hover:text-red-700 dark:hover:text-red-400 transition-colors"
                 >
                   Learn More <span className="ml-1">→</span>
-                </a>
+                </Link>
               </motion.div>
             ))}
           </motion.div>
@@ -388,57 +487,21 @@ export default function HomePage() {
               schedules.
             </p>
           </div>
-
+          <Link
+            href={`/about-us`}
+            className="mt-6 w-full inline-flex items-center text-xs font-bold text-red-600 dark:text-red-500 uppercase tracking-widest hover:text-red-700 dark:hover:text-red-400 transition-colors"
+          >
+            View All Events <span className="ml-1">→</span>
+          </Link>
           <motion.div
-            className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3"
+            className="mt-2 grid grid-cols-1 gap-6 md:grid-cols-3"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
           >
-            {events.map((ev, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                whileHover={{
-                  scale: 1.01,
-                  boxShadow: "0 10px 25px -5px rgba(0,0,0,0.02)",
-                }}
-                className="flex gap-5 bg-white dark:bg-zinc-900/50 border border-gray-100 dark:border-zinc-800/60 rounded-xl p-5 shadow-sm transition-all"
-              >
-                <div className="flex flex-col items-center justify-center text-center bg-red-50 dark:bg-red-950/30 border border-red-100 dark:border-red-900/40 rounded-l-lg p-3 min-w-17.5 h-full">
-                  <span className="block font-black text-xl text-red-600 dark:text-red-500 leading-none">
-                    {ev.day}
-                  </span>
-                  <span className="block font-bold text-[10px] text-red-600/80 dark:text-red-400/80 uppercase tracking-widest mt-1">
-                    {ev.month}
-                  </span>
-                </div>
-                <div className="flex flex-col justify-between flex-1">
-                  <div>
-                    <Image
-                      src={ev.image}
-                      alt="event image"
-                      width={200}
-                      height={150}
-                      className="mx-auto mb-4 w-full rounded-r-lg rounded-b-none"
-                    />
-                    <span className="text-xs flex gap-1 items-center text-gray-400 dark:text-zinc-500 mt-1 font-medium">
-                      <MapPin className="shrink-0" size={18} /> {ev.loc}
-                    </span>
-                    <h3 className="mt-3 font-bold text-sm md:text-base text-gray-900 dark:text-white leading-snug">
-                      {ev.title}
-                    </h3>
-                    <p className="text-xs text-gray-500 dark:text-zinc-400 mt-1">{ev.desc}</p>
-                  </div>
-                  <a
-                    href="/events"
-                    className="text-xs font-bold text-red-600 dark:text-red-500 uppercase tracking-wider mt-3 hover:underline inline-block"
-                  >
-                    View Details
-                  </a>
-                </div>
-              </motion.div>
+            {upcomingEvents.slice(0, 3).map((ev) => (
+              <EventCard key={ev.id} event={ev} isPast />
             ))}
           </motion.div>
         </div>
@@ -504,7 +567,7 @@ export default function HomePage() {
               {[
                 ...corperatePartners,
                 ...corperatePartners,
-                ...corperatePartners
+                ...corperatePartners,
               ].map((brand, idx) => (
                 <div
                   key={idx}
@@ -538,19 +601,22 @@ export default function HomePage() {
               better tomorrow.
             </p>
           </div>
-          <a
+          <Link
             href="/donations"
             className="rounded-md bg-red-600 px-6 py-3.5 font-bold text-xs uppercase tracking-wider text-white shadow-md hover:bg-red-700 shrink-0"
           >
             Donate Now
-          </a>
+          </Link>
         </motion.div>
       </section>
 
       {/* =========================================================================
           11. VOLUNTEER & SUBSCRIPTION HUB SECTION
          ========================================================================= */}
-      <div id="volunteer" className="w-full bg-gray-50/50 dark:bg-zinc-950/20 font-sans text-[#171717] dark:text-zinc-50 py-16 px-6 overflow-x-hidden transition-colors duration-300">
+      <div
+        id="volunteer"
+        className="w-full bg-gray-50/50 dark:bg-zinc-950/20 font-sans text-[#171717] dark:text-zinc-50 py-16 px-6 overflow-x-hidden transition-colors duration-300"
+      >
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
           {/* LEFT BLOCK: BECOME A VOLUNTEER CARD */}
           <motion.div
@@ -629,9 +695,15 @@ export default function HomePage() {
                   type="submit"
                   className="w-full rounded-xl bg-gray-950 dark:bg-red-600 hover:bg-gray-900 dark:hover:bg-red-700 text-white font-heading font-black text-xs uppercase tracking-wider py-3.5 px-4 transition-colors cursor-pointer text-center mt-2"
                 >
-                  Submit Request
+                  {isSubmitting ? "Submitting Request" : "Submit Request"}
                 </motion.button>
               </form>
+
+              {formStatus?.success === true && (
+                <p className="text-red-600 font-semibold text-sm">
+                  {formStatus.msg}
+                </p>
+              )}
             </div>
           </motion.div>
 

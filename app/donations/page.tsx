@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import { Easing, motion, Transition } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Herobanner from "@/components/Herobanner";
 import Image from "next/image";
 import { causesData } from "@/utils/lib";
+import Link from "next/link";
 
 // --- ANIMATION CURVES ---
 const customBezier: Easing = [0.16, 1, 0.3, 1];
@@ -18,31 +19,31 @@ const cardHoverSpring: Transition = {
 };
 
 export default function DonationsPage() {
-  const [selectedAmount, setSelectedAmount] = useState<number | "Custom">(5000);
-  const [inputValue, setInputValue] = useState<string>("5000");
-  const [selectedCause, setSelectedCause] = useState<string>(
-    "ASACADA Anti-Drug & Rehab Campaign",
-  );
-  const [donorName, setDonorName] = useState<string>("");
-  const [donorEmail, setDonorEmail] = useState<string>("");
+  // const [selectedAmount, setSelectedAmount] = useState<number | "Custom">(5000);
+  // const [inputValue, setInputValue] = useState<string>("5000");
+  // const [selectedCause, setSelectedCause] = useState<string>(
+  //   "ASACADA Anti-Drug & Rehab Campaign",
+  // );
+  // const [donorName, setDonorName] = useState<string>("");
+  // const [donorEmail, setDonorEmail] = useState<string>("");
 
-  const presetAmounts = [5000, 10000, 25000, 50000];
+  // const presetAmounts = [5000, 10000, 25000, 50000];
 
-  const handleAmountClick = (amount: number | "Custom") => {
-    setSelectedAmount(amount);
-    if (amount !== "Custom") {
-      setInputValue(amount.toString());
-    } else {
-      setInputValue("");
-    }
-  };
+  // const handleAmountClick = (amount: number | "Custom") => {
+  //   setSelectedAmount(amount);
+  //   if (amount !== "Custom") {
+  //     setInputValue(amount.toString());
+  //   } else {
+  //     setInputValue("");
+  //   }
+  // };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    alert(
-      `Routing token check for execution:\nProject: ${selectedCause}\nValue: ₦${parseFloat(inputValue || "0").toLocaleString()}`,
-    );
-  };
+  // const handleFormSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   alert(
+  //     `Routing token check for execution:\nProject: ${selectedCause}\nValue: ₦${parseFloat(inputValue || "0").toLocaleString()}`,
+  //   );
+  // };
 
   return (
     <>
@@ -77,6 +78,13 @@ export default function DonationsPage() {
                 Every donation, no matter how small, directly impacts the lives
                 of individuals and communities in need.
               </p>
+
+              <Link
+                href="#donations"
+                className="rounded-md bg-red-600 px-6 py-3.5 font-bold text-xs uppercase tracking-wider text-white shadow-md hover:bg-red-700 shrink-0"
+              >
+                Donate Now
+              </Link>
             </motion.div>
 
             <motion.div
@@ -178,14 +186,14 @@ export default function DonationsPage() {
           {/* =========================================================================
         4. ONLINE PAYMENT PLATFORM INTEGRATED FORM CONTAINER
        ========================================================================= */}
-          <section className="mx-auto max-w-2xl px-6">
+          {/* <section className="mx-auto max-w-2xl px-6">
             <motion.div
               initial={{ opacity: 0, scale: 0.99 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               className="bg-white dark:bg-zinc-900/40 border border-gray-100 dark:border-zinc-800/60 rounded-2xl p-6 md:p-8 shadow-sm space-y-6 transition-colors duration-300"
             >
-              {/* Header Layout Mapping */}
+              Header Layout Mapping
               <div className="text-center space-y-1">
                 <span className="text-[10px] font-black uppercase tracking-widest text-red-600 dark:text-red-500 block">
                   ONLINE PAYMENT PLATFORM
@@ -196,7 +204,7 @@ export default function DonationsPage() {
               </div>
 
               <form onSubmit={handleFormSubmit} className="space-y-5">
-                {/* 1. Preset Pick Grid Row */}
+                1. Preset Pick Grid Row
                 <div className="space-y-2">
                   <label className="block text-[11px] font-bold text-gray-900 dark:text-zinc-200 uppercase tracking-wide">
                     1. Select Donation Amount (NGN):
@@ -229,7 +237,7 @@ export default function DonationsPage() {
                     </button>
                   </div>
 
-                  {/* Standalone Input Box synced to presets matching screenshot state */}
+                  Standalone Input Box synced to presets matching screenshot state
                   <div className="relative mt-2 rounded-lg shadow-xs">
                     <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5">
                       <span className="text-gray-400 dark:text-zinc-500 font-bold text-xs">
@@ -251,7 +259,7 @@ export default function DonationsPage() {
                   </div>
                 </div>
 
-                {/* 2. Cause Dropdown Select Block */}
+                2. Cause Dropdown Select Block
                 <div className="space-y-1.5">
                   <label className="block text-[11px] font-bold text-gray-900 dark:text-zinc-200 uppercase tracking-wide">
                     2. Choose Cause / Project:
@@ -273,7 +281,7 @@ export default function DonationsPage() {
                   </select>
                 </div>
 
-                {/* Identity Text Inputs Frame */}
+                Identity Text Inputs Frame
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <label className="block text-[11px] font-bold text-gray-400 dark:text-zinc-400 uppercase tracking-wide">
@@ -303,7 +311,7 @@ export default function DonationsPage() {
                   </div>
                 </div>
 
-                {/* Complete Execution Button */}
+                Complete Execution Button
                 <motion.button
                   whileTap={{ scale: 0.98 }}
                   type="submit"
@@ -313,31 +321,31 @@ export default function DonationsPage() {
                 </motion.button>
               </form>
             </motion.div>
-          </section>
+          </section> */}
 
           {/* =========================================================================
         5. DIRECT WIRE / OFFICIAL BANK ACCOUNTS BLOCK
        ========================================================================= */}
-          <section className="mx-auto max-w-4xl px-6">
+          <section id="donations" className="mx-auto max-w-2xl px-6">
             <div className="bg-white dark:bg-zinc-950 rounded-2xl border-2 border-dashed border-gray-200 dark:border-zinc-800 p-6 md:p-10 space-y-8 relative transition-colors duration-300">
               <div className="text-center space-y-1">
                 <span className="text-[10px] font-black uppercase tracking-widest text-red-600 dark:text-red-500 block">
                   DIRECT BANK WIRE
                 </span>
                 <h2 className="font-heading font-black text-xl text-gray-950 dark:text-white tracking-tight">
-                  Official Bank Accounts
+                  Official Bank Account
                 </h2>
                 <p className="text-xs text-gray-400 dark:text-zinc-400 max-w-xl mx-auto leading-relaxed">
                   For electronic bank transfers, cash deposits, or international
-                  wire transfers, please use the official corporate bank
-                  accounts below.
+                  wire transfers, please use the official corporate bank account
+                  below.
                 </p>
               </div>
 
               {/* Target Split Columns */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 items-center md:grid-cols-1 gap-6">
                 {/* Account Block 1 */}
-                <div className="bg-gray-50/60 dark:bg-zinc-900/40 rounded-xl border border-gray-100 dark:border-zinc-800/60 p-5 space-y-3 relative group hover:border-gray-200 dark:hover:border-zinc-700 transition-all">
+                <div className="bg-gray-50/60 dark:bg-zinc-900/40 rounded-xl border border-gray-100 dark:border-zinc-800/60 p-5 space-y-3 text-center relative group hover:border-gray-200 dark:hover:border-zinc-700 transition-all">
                   <div className="flex justify-between items-center border-b border-gray-200/60 dark:border-zinc-800 pb-2">
                     <span className="text-xs font-black tracking-tight text-red-700 dark:text-red-400 font-serif italic">
                       Zenith Bank PLC
@@ -363,7 +371,7 @@ export default function DonationsPage() {
                         className="font-mono font-black text-base text-gray-950 dark:text-white tracking-wide select-all cursor-pointer"
                         title="Click to select"
                       >
-                        1016738920
+                        1310006982
                       </span>
                     </div>
                     <div className="flex flex-col pt-1">
@@ -378,7 +386,7 @@ export default function DonationsPage() {
                 </div>
 
                 {/* Account Block 2 */}
-                <div className="bg-gray-50/60 dark:bg-zinc-900/40 rounded-xl border border-gray-100 dark:border-zinc-800/60 p-5 space-y-3 relative group hover:border-gray-200 dark:hover:border-zinc-700 transition-all">
+                {/* <div className="bg-gray-50/60 dark:bg-zinc-900/40 rounded-xl border border-gray-100 dark:border-zinc-800/60 p-5 space-y-3 relative group hover:border-gray-200 dark:hover:border-zinc-700 transition-all">
                   <div className="flex justify-between items-center border-b border-gray-200/60 dark:border-zinc-800 pb-2">
                     <span className="text-xs font-black tracking-tight text-orange-600 dark:text-orange-400 font-sans">
                       Guaranty Trust Bank (GTB)
@@ -416,7 +424,7 @@ export default function DonationsPage() {
                       </span>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
 
               {/* Fineprint Text Guidelines & Action Buttons Block */}
@@ -424,13 +432,13 @@ export default function DonationsPage() {
                 {/* Action Redirection Buttons */}
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto pt-2">
                   <a
-                    href="mailto:receipts@adorablefoundation.com?subject=Donation%20Receipt%20Submission"
+                    href="mailto:info2adorablefoundation@gmail.com?subject=Donation%20Receipt%20Submission"
                     className="w-full sm:w-1/2 inline-flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white hover:border-gray-300 px-4 py-2.5 text-xs font-bold text-gray-700 shadow-xs transition-colors cursor-pointer dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:border-zinc-700"
                   >
                     📧 Submit Via Email
                   </a>
                   <a
-                    href="https://wa.me/2347012777177?text=Hello%20AFI%2C%20I%20have%20just%20made%20a%20direct%20bank%20transfer%20donation%20and%20would%20like%20to%20submit%20my%20receipt%20for%20verification."
+                    href="https://wa.me/2347013777177?text=Hello%20AFI%2C%20I%20have%20just%20made%20a%20direct%20bank%20transfer%20donation%20and%20would%20like%20to%20submit%20my%20receipt%20for%20verification."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full sm:w-1/2 inline-flex items-center justify-center gap-2 rounded-lg bg-red-600 hover:bg-red-700 px-4 py-2.5 text-xs font-bold text-white shadow-xs transition-colors cursor-pointer dark:bg-red-500 dark:hover:bg-red-600"

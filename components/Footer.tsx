@@ -89,7 +89,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/" className="hover:text-white transition-colors">
+                <Link href="/#volunteer" className="hover:text-white transition-colors">
                   Volunteer
                 </Link>
               </li>
@@ -116,7 +116,7 @@ const Footer = () => {
                   className="hover:text-white transition-colors"
                   href={"mailto:info2@adorablefoundation.com"}
                 >
-                  info2@adorablefoundation.com
+                  info2adorablefoundation@gmail.com
                 </Link>
               </li>
               <li>

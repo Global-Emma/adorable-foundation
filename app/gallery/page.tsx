@@ -140,8 +140,8 @@ export default function GalleryPage() {
                   <Image
                     src={activeImage.image}
                     alt={activeImage.title}
-                    width={100}
-                    height={100}
+                    width={300}
+                    height={250}
                     className="w-full max-h-[60vh] object-contain select-none"
                   />
                 </div>

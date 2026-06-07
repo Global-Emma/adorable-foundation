@@ -1,11 +1,12 @@
 "use client";
 
-import React from "react";
-import { Easing, motion, Variants } from "framer-motion";
+import React, { useState } from "react";
+import { Easing, motion, Variants, AnimatePresence } from "framer-motion";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import Herobanner from "@/components/Herobanner";
 import Image from "next/image";
+import { Play, X, Film } from "lucide-react";
 
 // --- ANIMATION INTERFOLDS ---
 const customBezier: Easing = [0.16, 1, 0.3, 1];
@@ -27,21 +28,37 @@ const staggerContainer = {
   },
 };
 
+// --- MOCK FOUNDER VIDEO DATA ---
+const founderVideos = [
+  {
+    id: "f-vid-1",
+    title:
+      "Princess Ada Okeke Amam Keynote Address",
+    duration: "5:20",
+    category: "Keynote Address",
+    thumbnail: "/images/gallery/founder.png",
+    videoUrl: "/videos/founder_video.mp4", 
+  }
+  
+];
+
 export default function FounderPage() {
+  const [activeVideoUrl, setActiveVideoUrl] = useState<string | null>(null);
+
   return (
     <>
       <Navbar />
       <div className="w-full bg-white dark:bg-zinc-950 font-sans text-[#171717] dark:text-zinc-50 selection:bg-red-600 selection:text-white overflow-x-hidden transition-colors duration-300">
         {/* =========================================================================
-      1. HEADER / BREADCRUMB
-     ========================================================================= */}
+          1. HEADER / BREADCRUMB
+         ========================================================================= */}
         <Herobanner
           items={{ image: "/images/gallery/founder.png", title: "Our Founder" }}
         />
 
         {/* =========================================================================
-      2. MEET OUR FOUNDER HERO SPLIT
-     ========================================================================= */}
+          2. MEET OUR FOUNDER HERO SPLIT
+         ========================================================================= */}
         <section className="mx-auto max-w-7xl px-6 py-12 md:py-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Block: Premium Portrait Framework */}
@@ -120,8 +137,8 @@ export default function FounderPage() {
         </section>
 
         {/* =========================================================================
-      3. HER STORY SECTION
-     ========================================================================= */}
+          3. HER STORY SECTION
+         ========================================================================= */}
         <section className="mx-auto max-w-7xl px-6 py-12 md:py-16 border-t border-gray-50 dark:border-zinc-900 transition-colors duration-300">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Block: Content Loop */}
@@ -180,8 +197,7 @@ export default function FounderPage() {
                     backgroundImage: "url('/images/gallery/gallery2.png')",
                   }}
                 >
-                  <div className="w-full h-full bg-black/1 dark:bg-white/1 flex items-center justify-center p-4 text-center text-xs text-gray-400">
-                  </div>
+                  <div className="w-full h-full bg-black/1 dark:bg-white/1 flex items-center justify-center p-4 text-center text-xs text-gray-400"></div>
                 </div>
               </div>
             </motion.div>
@@ -189,8 +205,8 @@ export default function FounderPage() {
         </section>
 
         {/* =========================================================================
-      4. PREMIUM CENTRAL QUOTE BLOCK
-     ========================================================================= */}
+          4. PREMIUM CENTRAL QUOTE BLOCK
+         ========================================================================= */}
         <section className="mx-auto max-w-6xl px-6 py-10">
           <motion.div
             className="relative rounded-2xl bg-gray-50/60 dark:bg-zinc-900/40 border border-gray-100 dark:border-zinc-800/60 p-8 md:p-12 text-center overflow-hidden shadow-sm transition-colors duration-300"
@@ -225,8 +241,8 @@ export default function FounderPage() {
         </section>
 
         {/* =========================================================================
-      5. VISION FOR NIGERIA SECTION
-     ========================================================================= */}
+          5. VISION FOR NIGERIA SECTION
+         ========================================================================= */}
         <section className="mx-auto max-w-7xl px-6 py-12 md:py-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Block: Narrative Copy */}
@@ -270,8 +286,7 @@ export default function FounderPage() {
                     backgroundImage: "url('/images/gallery/gallery5.png')",
                   }}
                 >
-                  <div className="w-full h-full bg-black/1 dark:bg-white/1 flex items-center justify-center p-4 text-center text-xs text-gray-400">
-                  </div>
+                  <div className="w-full h-full bg-black/1 dark:bg-white/1 flex items-center justify-center p-4 text-center text-xs text-gray-400"></div>
                 </div>
               </div>
             </motion.div>
@@ -279,8 +294,98 @@ export default function FounderPage() {
         </section>
 
         {/* =========================================================================
-      6. ACHIEVEMENTS SYSTEM GRID
-     ========================================================================= */}
+          6. KEYNOTE ADDRESSES & MEDIA APPEARANCES (NEW VIDEO SECTION)
+         ========================================================================= */}
+        <section className="mx-auto max-w-7xl px-6 py-16 md:py-24 border-t border-gray-50 dark:border-zinc-900 transition-colors duration-300">
+          <div className="text-center space-y-3 mb-12">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={slideUpReveal}
+              className="flex flex-col items-center"
+            >
+              <h3 className="font-heading font-extrabold text-2xl md:text-3xl text-gray-900 dark:text-white tracking-tight">
+                Keynote Addresses & Media
+              </h3>
+              <span className="text-red-600 dark:text-red-500 text-sm md:text-base font-semibold uppercase tracking-wider block mt-1">
+                Advocacy In Motion
+              </span>
+              <p className="mx-auto mt-4 max-w-xl text-gray-500 dark:text-zinc-400 text-sm md:text-base leading-relaxed">
+                Explore original broadcasts, field documentation logs, and
+                public addresses delivered directly by Dr. Princess Ada Okeke
+                Amam.
+              </p>
+            </motion.div>
+          </div>
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-40px" }}
+            variants={staggerContainer}
+          >
+            {founderVideos.map((video) => (
+              <motion.div
+                key={video.id}
+                variants={slideUpReveal}
+                whileHover={{ y: -4 }}
+                className="group relative flex flex-col justify-between bg-white dark:bg-zinc-900/40 rounded-2xl border border-gray-100 dark:border-zinc-800/60 p-4 transition-all duration-300 hover:shadow-md"
+              >
+                <div className="space-y-4">
+                  {/* Interactive Visual Playback Context Frame */}
+                  <div
+                    onClick={() => setActiveVideoUrl(video.videoUrl)}
+                    className="relative aspect-video w-full rounded-xl bg-gray-100 dark:bg-zinc-900 overflow-hidden cursor-pointer shadow-xs group"
+                  >
+                    <Image
+                      src={video.thumbnail}
+                      alt={video.title}
+                      fill
+                      sizes="(max-w-7xl) 33vw, 100vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-102 brightness-[90%] group-hover:brightness-[75%]"
+                    />
+
+                    {/* Centered Trigger Interface Overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <motion.div
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="h-12 w-12 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg transition-transform"
+                      >
+                        <Play
+                          size={18}
+                          fill="currentColor"
+                          className="ml-0.5"
+                        />
+                      </motion.div>
+                    </div>
+
+                    {/* Timestamp Matrix Badge */}
+                    <div className="absolute bottom-2 right-2 bg-black/70 px-2 py-0.5 rounded text-[10px] font-bold text-white tracking-wide">
+                      {video.duration}
+                    </div>
+                  </div>
+
+                  {/* Metadata Descriptive Layout */}
+                  <div className="space-y-1.5 px-1">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-red-600 dark:text-red-500 flex items-center gap-1">
+                      <Film size={10} /> {video.category}
+                    </span>
+                    <h4 className="font-heading font-bold text-base text-gray-900 dark:text-zinc-100 tracking-tight leading-snug line-clamp-2 transition-colors duration-300">
+                      {video.title}
+                    </h4>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </section>
+
+        {/* =========================================================================
+          7. ACHIEVEMENTS SYSTEM GRID
+         ========================================================================= */}
         <section className="bg-gray-50/50 dark:bg-zinc-900/20 border-t border-gray-100 dark:border-zinc-900 py-16 md:py-20 transition-colors duration-300">
           <div className="mx-auto max-w-7xl px-6">
             <div className="text-center mb-12">
@@ -356,6 +461,47 @@ export default function FounderPage() {
             </motion.div>
           </div>
         </section>
+
+        {/* =========================================================================
+          8. MODAL LIGHTBOX OVERLAY PLAYER FRAME
+         ========================================================================= */}
+        <AnimatePresence>
+          {activeVideoUrl && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-xs"
+              onClick={() => setActiveVideoUrl(null)}
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                transition={{ duration: 0.4, ease: customBezier }}
+                className="relative w-full max-w-4xl aspect-video rounded-2xl bg-zinc-950 overflow-hidden shadow-2xl border border-zinc-800"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Close Button UI Layer */}
+                <button
+                  onClick={() => setActiveVideoUrl(null)}
+                  className="absolute top-4 right-4 z-10 bg-black/40 hover:bg-black/70 text-zinc-300 hover:text-white p-2 rounded-full border border-zinc-800/40 backdrop-blur-xs transition-colors cursor-pointer"
+                >
+                  <X size={18} />
+                </button>
+
+                {/* Embedded Video Player Screen Frame */}
+                <iframe
+                  src={`${activeVideoUrl}?autoplay=1`}
+                  title="Founder Keynote Dispatch Stream"
+                  className="w-full h-full border-0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
       <Footer />
     </>

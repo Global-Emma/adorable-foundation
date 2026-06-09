@@ -53,7 +53,7 @@ export default function SingleProgramPage({ params }: PageProps) {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-gray-50/50 mt-[-50px] dark:bg-zinc-950 text-gray-900 dark:text-zinc-100 pt-24 pb-16 transition-colors duration-300">
+      <main className="min-h-screen bg-gray-50/50 -mt-12.5 dark:bg-zinc-950 text-gray-900 dark:text-zinc-100 pt-24 pb-16 transition-colors duration-300">
         {/* Hero Header Section */}
         <section className="relative w-full border-b border-gray-100 dark:border-zinc-900/60 bg-white dark:bg-zinc-900/40 backdrop-blur-md px-6 py-10 md:py-16">
           <div className="mx-auto max-w-7xl">
@@ -181,7 +181,7 @@ export default function SingleProgramPage({ params }: PageProps) {
 
           {/* Right Side Column: Sticky Action & Call-To-Action Box */}
           <div className="space-y-6 lg:h-fit lg:sticky lg:top-28">
-            <div className="bg-gradient-to-br from-gray-900 to-black dark:from-zinc-900 dark:to-zinc-950 text-white p-6 md:p-8 rounded-2xl shadow-xl text-center relative overflow-hidden border border-zinc-800">
+            <div className="bg-linear-to-br from-gray-900 to-black dark:from-zinc-900 dark:to-zinc-950 text-white p-6 md:p-8 rounded-2xl shadow-xl text-center relative overflow-hidden border border-zinc-800">
               <div className="absolute top-0 right-0 p-8 opacity-5 scale-150 transform translate-x-4 -translate-y-4">
                 <HeartHandshake className="h-32 w-32" />
               </div>

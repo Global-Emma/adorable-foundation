@@ -20,14 +20,14 @@ const scrollRevealUp: Variants = {
   },
 };
 
-function EventCard({ event, isPast = false }: EventCardProps) {
+function EventCard({ event, isPast }: EventCardProps) {
   return (
     <motion.div
       variants={scrollRevealUp}
       whileHover={{ y: -6, scale: 1.005 }}
       transition={cardHoverSpring}
       className={`bg-white dark:bg-zinc-900/40 rounded-2xl border border-gray-100 dark:border-zinc-800/80 p-5 shadow-xs flex flex-col justify-between transition-all duration-300 hover:shadow-md relative overflow-hidden group 
-        ${isPast ? "grayscale-[30%] hover:grayscale-0 opacity-90 hover:opacity-100" : ""}`}
+        ${isPast ? "grayscale-30 hover:grayscale-0 opacity-90 hover:opacity-100" : ""}`}
     >
       <div className="space-y-4">
         {/* Date Matrix Frame Block */}

@@ -36,7 +36,7 @@ const founderVideos = [
       "Princess Ada Okeke Amam Keynote Address",
     duration: "5:20",
     category: "Keynote Address",
-    thumbnail: "/images/gallery/founder.png",
+    thumbnail: "/images/adorable/founder/founder3.jpeg",
     videoUrl: "/videos/founder_video.mp4", 
   }
   
@@ -72,7 +72,7 @@ export default function FounderPage() {
                 <div
                   className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-102"
                   style={{
-                    backgroundImage: "url('/images/gallery/founder.png')",
+                    backgroundImage: "url('/images/adorable/founder/founder2.jpeg')",
                   }}
                 >
                   {/* Fallback layout card matching the visual template */}
@@ -190,11 +190,11 @@ export default function FounderPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: customBezier }}
             >
-              <div className="aspect-video rounded-xl bg-gray-50 dark:bg-zinc-900/40 border border-gray-100 dark:border-zinc-800/60 shadow-md overflow-hidden transition-colors duration-300">
+              <div className="aspect-10/10 rounded-xl bg-gray-50 dark:bg-zinc-900/40 border border-gray-100 dark:border-zinc-800/60 shadow-md overflow-hidden transition-colors duration-300">
                 <div
                   className="w-full h-full bg-cover bg-center"
                   style={{
-                    backgroundImage: "url('/images/gallery/gallery2.png')",
+                    backgroundImage: "url('/images/adorable/founder/founder1.jpeg')",
                   }}
                 >
                   <div className="w-full h-full bg-black/1 dark:bg-white/1 flex items-center justify-center p-4 text-center text-xs text-gray-400"></div>
@@ -320,7 +320,7 @@ export default function FounderPage() {
           </div>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-40px" }}
@@ -344,7 +344,7 @@ export default function FounderPage() {
                       alt={video.title}
                       fill
                       sizes="(max-w-7xl) 33vw, 100vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-102 brightness-[90%] group-hover:brightness-[75%]"
+                      className="object-cover transition-transform duration-500 group-hover:scale-102 brightness-90 group-hover:brightness-75"
                     />
 
                     {/* Centered Trigger Interface Overlay */}

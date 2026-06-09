@@ -1,17 +1,35 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence, Easing } from "framer-motion";
+import { motion, AnimatePresence, Easing, Variants } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Herobanner from "@/components/Herobanner";
 import Image from "next/image";
 import { categories, Category, GalleryItem, galleryItems } from "@/utils/lib";
+import { Film, Play, X } from "lucide-react";
 
 // --- ANIMATION CONFIGS ---
 const smoothCubic: Easing = [0.25, 1, 0.5, 1];
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12 },
+  },
+};
 
 export default function GalleryPage() {
+  const [activeVideoUrl, setActiveVideoUrl] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<Category>("All");
   // State to track the currently viewed image item for the overlay
   const [activeImage, setActiveImage] = useState<GalleryItem | null>(null);
@@ -31,6 +49,25 @@ export default function GalleryPage() {
       document.body.style.overflow = "unset";
     };
   }, [activeImage]);
+
+  const institutionalVideos = [
+    {
+      id: "vid-1",
+      title: "Pad The Girl Child Campaign",
+      duration: "4:15",
+      category: "Campaign Highlights",
+      thumbnail: "/images/adorable/sch_nyanya/nyanya2.jpeg",
+      videoUrl: "/videos/girl_child.mp4",
+    },
+    {
+      id: "vid-2",
+      title: "ASACADA Anti-Drug Campaign",
+      duration: "6:42",
+      category: "Field Impact",
+      thumbnail: "/images/adorable/drug_camp/drug3.jpeg",
+      videoUrl: "/videos/anthem_video.mp4",
+    },
+  ];
 
   return (
     <>
@@ -155,6 +192,135 @@ export default function GalleryPage() {
                     {activeImage.title}
                   </h3>
                 </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* =========================================================================
+            6. MULTIMEDIA DISPATCHES (VIDEO LOGS SECTION)
+           ========================================================================= */}
+        <section className="mx-auto max-w-7xl px-6 py-16 md:py-24">
+          <div className="text-center space-y-3 mb-12">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+              className="flex flex-col items-center"
+            >
+              <h2 className="font-heading font-extrabold text-3xl md:text-4xl text-gray-900 dark:text-white tracking-tight">
+                Media & Field Dispatches
+              </h2>
+              <span className="text-red-600 dark:text-red-500 text-lg md:text-xl block mt-1">
+                AFI Actions in Motion
+              </span>
+              <p className="mx-auto mt-4 max-w-xl text-gray-500 dark:text-zinc-400 text-sm md:text-base leading-relaxed">
+                Watch detailed coverages from our latest events and campaigns.
+              </p>
+            </motion.div>
+          </div>
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-40px" }}
+            variants={staggerContainer}
+          >
+            {institutionalVideos.map((video) => (
+              <motion.div
+                key={video.id}
+                variants={fadeInUp}
+                whileHover={{ y: -4 }}
+                className="group relative flex flex-col justify-between bg-white dark:bg-zinc-900/40 rounded-2xl border border-gray-100 dark:border-zinc-800/60 p-4 transition-all duration-300 hover:shadow-md"
+              >
+                <div className="space-y-4">
+                  {/* Interactive Thumbnail Component Frame */}
+                  <div
+                    onClick={() => setActiveVideoUrl(video.videoUrl)}
+                    className="relative aspect-video w-full rounded-xl bg-gray-100 dark:bg-zinc-900 overflow-hidden cursor-pointer shadow-xs group"
+                  >
+                    <Image
+                      src={video.thumbnail}
+                      alt={video.title}
+                      fill
+                      sizes="(max-w-7xl) 33vw, 100vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-102 brightness-90% group-hover:brightness-75%"
+                    />
+
+                    {/* Centered Trigger Interface Overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <motion.div
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="h-12 w-12 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg transition-transform"
+                      >
+                        <Play
+                          size={18}
+                          fill="currentColor"
+                          className="ml-0.5"
+                        />
+                      </motion.div>
+                    </div>
+
+                    {/* Timestamp Matrix Badge */}
+                    <div className="absolute bottom-2 right-2 bg-black/70 px-2 py-0.5 rounded text-[10px] font-bold text-white tracking-wide">
+                      {video.duration}
+                    </div>
+                  </div>
+
+                  {/* Metadata Descriptive Layout */}
+                  <div className="space-y-1.5 px-1">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-red-600 dark:text-red-500 flex items-center gap-1">
+                      <Film size={10} /> {video.category}
+                    </span>
+                    <h3 className="font-heading font-bold text-base text-gray-900 dark:text-zinc-100 tracking-tight leading-snug line-clamp-2 transition-colors duration-300">
+                      {video.title}
+                    </h3>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </section>
+
+        {/* =========================================================================
+            7. MODAL LIGHTBOX OVERLAY PLAYER FRAME
+           ========================================================================= */}
+        <AnimatePresence>
+          {activeVideoUrl && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-xs"
+              onClick={() => setActiveVideoUrl(null)}
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                className="relative w-full max-w-4xl aspect-video rounded-2xl bg-zinc-950 overflow-hidden shadow-2xl border border-zinc-800"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Close Button UI Layer */}
+                <button
+                  onClick={() => setActiveVideoUrl(null)}
+                  className="absolute top-4 right-4 z-10 bg-black/40 hover:bg-black/70 text-zinc-300 hover:text-white p-2 rounded-full border border-zinc-800/40 backdrop-blur-xs transition-colors cursor-pointer"
+                >
+                  <X size={18} />
+                </button>
+
+                {/* Embedded Video Player Screen Frame */}
+                <iframe
+                  src={`${activeVideoUrl}?autoplay=1`}
+                  title="AFI Multimedia Dispatch Stream"
+                  className="w-full h-full border-0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
               </motion.div>
             </motion.div>
           )}

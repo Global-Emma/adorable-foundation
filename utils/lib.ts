@@ -1,10 +1,10 @@
 export type Category =
   | "All"
-  | "Outreach Programs"
-  | "School Campaigns"
-  | "Rehabilitation"
-  | "Events"
-  | "Community Support";
+  | "School Outreach"
+  | "Medical Outreach"
+  | "ASACADA Campaign"
+  | "Birthday Special"
+  | "Widows Outreach";
 
 export interface GalleryItem {
   id: string;
@@ -33,114 +33,393 @@ export type EventCardProps = {
 
 export const categories: Category[] = [
   "All",
-  "Outreach Programs",
-  "School Campaigns",
-  "Rehabilitation",
-  "Events",
-  "Community Support",
+  "School Outreach",
+  "Medical Outreach",
+  "ASACADA Campaign",
+  "Birthday Special",
+  "Widows Outreach",
 ];
 
 export const galleryItems: GalleryItem[] = [
+  // army(sch outreach)
   {
     id: "gal-1",
-    category: "Outreach Programs",
-    title: "AFI Community Sensitization outreach",
-    image: "/images/gallery/ascada_group_img.png"
+    category: "School Outreach",
+    title: "Army school outreach",
+    image: "/images/adorable/sch_army/sch1.jpeg"
   },
   {
     id: "gal-2",
-    category: "Rehabilitation",
-    title: "Medical Rehabilitation Session Support",
-    image: "/images/gallery/ascada_women.png"
+    category: "School Outreach",
+    title: "Army school outreach",
+    image: "/images/adorable/sch_army/sch2.jpeg"
   },
   {
     id: "gal-3",
-    category: "Rehabilitation",
-    title: "Medical Rehabilitation Session Support",
-    image: "/images/gallery/sch_outreach.png"
+    category: "School Outreach",
+    title: "Army school outreach",
+    image: "/images/adorable/sch_army/sch3.jpeg"
   },
   {
     id: "gal-4",
-    category: "School Campaigns",
-    title: "Drug Abuse Prevention Campaign in High Schools",
-    image: "/images/gallery/gallery1.png"
+    category: "School Outreach",
+    title: "Army school outreach",
+    image: "/images/adorable/sch_army/sch4.jpeg"
   },
   {
     id: "gal-5",
-    category: "Events",
-    title: "Youth Empowerment Workshop Checkpoint",
-    image: "/images/gallery/gallery2.png"
-
+    category: "School Outreach",
+    title: "Army school outreach",
+    image: "/images/adorable/sch_army/sch5.jpeg"
   },
   {
     id: "gal-6",
-    category: "Community Support",
-    title: "Food and Essential Relief Distribution",
-    image: "/images/gallery/gallery3.png"
-
+    category: "School Outreach",
+    title: "Army school outreach",
+    image: "/images/adorable/sch_army/sch6.jpeg"
   },
+
+  // nyanya (sch outreach) 
   {
     id: "gal-7",
-    category: "School Campaigns",
-    title: "Awareness Campaign Classroom Session",
-    image: "/images/gallery/gallery4.png"
-
+    category: "School Outreach",
+    title: "Nyanya school outreach",
+    image: "/images/adorable/sch_nyanya/nyanya1.jpeg"
   },
   {
     id: "gal-8",
-    category: "Outreach Programs",
-    title: "Youth Support Action Rally Network",
-    image: "/images/gallery/gallery5.png"
-
+    category: "School Outreach",
+    title: "Nyanya school outreach",
+    image: "/images/adorable/sch_nyanya/nyanya2.jpeg"
   },
   {
     id: "gal-9",
-    category: "Rehabilitation",
-    title: "Recovery Support Group Counseling Session",
-    image: "/images/gallery/gallery6.png"
-
+    category: "School Outreach",
+    title: "Nyanya school outreach",
+    image: "/images/adorable/sch_nyanya/nyanya3.jpeg"
   },
   {
     id: "gal-10",
-    category: "Events",
-    title: "Annual AFI Impact Seminar Panel Session", 
-    image: "/images/gallery/gallery7.png"
+    category: "School Outreach",
+    title: "Nyanya school outreach",
+    image: "/images/adorable/sch_nyanya/nyanya4.jpeg"
   },
   {
     id: "gal-11",
-    category: "Community Support",
-    title: "Sustenance Materials Distribution Hub",
-    image: "/images/gallery/gallery8.png"
-
+    category: "School Outreach",
+    title: "Nyanya school outreach",
+    image: "/images/adorable/sch_nyanya/nyanya5.jpeg"
   },
   {
     id: "gal-12",
-    category: "Community Support",
-    title: "Sustenance Materials Distribution Hub",
-    image: "/images/gallery/gallery9.png"
-
+    category: "School Outreach",
+    title: "Nyanya school outreach",
+    image: "/images/adorable/sch_nyanya/nyanya6.jpeg"
   },
   {
     id: "gal-13",
-    category: "Community Support",
-    title: "Sustenance Materials Distribution Hub",
-    image: "/images/gallery/gallery10.png"
-
+    category: "School Outreach",
+    title: "Nyanya school outreach",
+    image: "/images/adorable/sch_nyanya/nyanya7.jpeg"
   },
   {
     id: "gal-14",
-    category: "Community Support",
-    title: "Sustenance Materials Distribution Hub",
-    image: "/images/gallery/gallery11.png"
-
+    category: "School Outreach",
+    title: "Nyanya school outreach",
+    image: "/images/adorable/sch_nyanya/nyanya8.jpeg"
   },
   {
     id: "gal-15",
-    category: "Community Support",
-    title: "Sustenance Materials Distribution Hub",
-    image: "/images/gallery/gallery12.png"
-
+    category: "School Outreach",
+    title: "Nyanya school outreach",
+    image: "/images/adorable/sch_nyanya/nyanya9.jpeg"
   },
+  {
+    id: "gal-16",
+    category: "School Outreach",
+    title: "Nyanya school outreach",
+    image: "/images/adorable/sch_nyanya/nyanya10.jpeg"
+  },
+  {
+    id: "gal-17",
+    category: "School Outreach",
+    title: "Nyanya school outreach",
+    image: "/images/adorable/sch_nyanya/nyanya11.jpeg"
+  },
+  {
+    id: "gal-18",
+    category: "School Outreach",
+    title: "Nyanya school outreach",
+    image: "/images/adorable/sch_nyanya/nyanya12.jpeg"
+  },
+  {
+    id: "gal-19",
+    category: "School Outreach",
+    title: "Nyanya school outreach",
+    image: "/images/adorable/sch_nyanya/nyanya13.jpeg"
+  },
+  {
+    id: "gal-20",
+    category: "School Outreach",
+    title: "Nyanya school outreach",
+    image: "/images/adorable/sch_nyanya/nyanya14.jpeg"
+  },
+  {
+    id: "gal-21",
+    category: "School Outreach",
+    title: "Nyanya school outreach",
+    image: "/images/adorable/sch_nyanya/nyanya15.jpeg"
+  },
+  {
+    id: "gal-22",
+    category: "School Outreach",
+    title: "Nyanya school outreach",
+    image: "/images/adorable/sch_nyanya/nyanya16.jpeg"
+  },
+
+  // medical outreach
+  {
+    id: "gal-23",
+    category: "Medical Outreach",
+    title: "Impactful outreach at Buzunkure Kuje Abuja",
+    image: "/images/adorable/med_outreach/med1.jpeg"
+  },
+  {
+    id: "gal-24",
+    category: "Medical Outreach",
+    title: "Impactful outreach at Buzunkure Kuje Abuja",
+    image: "/images/adorable/med_outreach/med2.jpeg"
+  },
+  {
+    id: "gal-25",
+    category: "Medical Outreach",
+    title: "Impactful outreach at Buzunkure Kuje Abuja",
+    image: "/images/adorable/med_outreach/med3.jpeg"
+  },
+  {
+    id: "gal-26",
+    category: "Medical Outreach",
+    title: "Impactful outreach at Buzunkure Kuje Abuja",
+    image: "/images/adorable/med_outreach/med4.jpeg"
+  },
+  {
+    id: "gal-27",
+    category: "Medical Outreach",
+    title: "Impactful outreach at Buzunkure Kuje Abuja",
+    image: "/images/adorable/med_outreach/med5.jpeg"
+  },
+  {
+    id: "gal-28",
+    category: "Medical Outreach",
+    title: "Impactful outreach at Buzunkure Kuje Abuja",
+    image: "/images/adorable/med_outreach/med6.jpeg"
+  },
+  {
+    id: "gal-29",
+    category: "Medical Outreach",
+    title: "Impactful outreach at Buzunkure Kuje Abuja",
+    image: "/images/adorable/med_outreach/med7.jpeg"
+  },
+  {
+    id: "gal-30",
+    category: "Medical Outreach",
+    title: "Impactful outreach at Buzunkure Kuje Abuja",
+    image: "/images/adorable/med_outreach/med8.jpeg"
+  },
+
+  // DRUG GHANA
+  {
+    id: "gal-31",
+    category: "ASACADA Campaign",
+    title: "Ghana Drug Awareness Campaign",
+    image: "/images/adorable/ghana_camp/ghana1.jpeg"
+  },
+  {
+    id: "gal-32",
+    category: "ASACADA Campaign",
+    title: "Ghana Drug Awareness Campaign",
+    image: "/images/adorable/ghana_camp/ghana2.jpeg"
+  },
+  {
+    id: "gal-33",
+    category: "ASACADA Campaign",
+    title: "Ghana Drug Awareness Campaign",
+    image: "/images/adorable/ghana_camp/ghana3.jpeg"
+  },
+  {
+    id: "gal-34",
+    category: "ASACADA Campaign",
+    title: "Ghana Drug Awareness Campaign",
+    image: "/images/adorable/ghana_camp/ghana4.jpeg"
+  },
+  {
+    id: "gal-35",
+    category: "ASACADA Campaign",
+    title: "Ghana Drug Awareness Campaign",
+    image: "/images/adorable/ghana_camp/ghana5.jpeg"
+  },
+  {
+    id: "gal-36",
+    category: "ASACADA Campaign",
+    title: "Ghana Drug Awareness Campaign",
+    image: "/images/adorable/ghana_camp/ghana6.jpeg"
+  },
+  {
+    id: "gal-37",
+    category: "ASACADA Campaign",
+    title: "Ghana Drug Awareness Campaign",
+    image: "/images/adorable/ghana_camp/ghana7.jpeg"
+  },
+  {
+    id: "gal-38",
+    category: "ASACADA Campaign",
+    title: "Ghana Drug Awareness Campaign",
+    image: "/images/adorable/ghana_camp/ghana8.jpeg"
+  },
+  
+  // DRUG CAMP
+  {
+    id: "gal-39",
+    category: "ASACADA Campaign",
+    title: "World Drug Day Campaign Courtsey Visit by AFI delegates",
+    image: "/images/adorable/drug_camp/drug1.jpeg"
+  },
+  {
+    id: "gal-40",
+    category: "ASACADA Campaign",
+    title: "World Drug Day Campaign Courtsey Visit by AFI delegates",
+    image: "/images/adorable/drug_camp/drug2.jpeg"
+  },
+  {
+    id: "gal-41",
+    category: "ASACADA Campaign",
+    title: "World Drug Day Campaign Courtsey Visit by AFI delegates",
+    image: "/images/adorable/drug_camp/drug3.jpeg"
+  },
+  {
+    id: "gal-42",
+    category: "ASACADA Campaign",
+    title: "World Drug Day Campaign Courtsey Visit by AFI delegates",
+    image: "/images/adorable/drug_camp/drug4.jpeg"
+  },
+  {
+    id: "gal-43",
+    category: "ASACADA Campaign",
+    title: "World Drug Day Campaign Courtsey Visit by AFI delegates",
+    image: "/images/adorable/drug_camp/drug5.jpeg"
+  },
+  {
+    id: "gal-44",
+    category: "ASACADA Campaign",
+    title: "World Drug Day Campaign Courtsey Visit by AFI delegates",
+    image: "/images/adorable/drug_camp/drug6.jpeg"
+  },
+  {
+    id: "gal-45",
+    category: "ASACADA Campaign",
+    title: "World Drug Day Campaign Courtsey Visit by AFI delegates",
+    image: "/images/adorable/drug_camp/drug7.jpeg"
+  },
+  {
+    id: "gal-46",
+    category: "ASACADA Campaign",
+    title: "World Drug Day Campaign Courtsey Visit by AFI delegates",
+    image: "/images/adorable/drug_camp/drug8.jpeg"
+  },
+  {
+    id: "gal-47",
+    category: "ASACADA Campaign",
+    title: "World Drug Day Campaign Courtsey Visit by AFI delegates",
+    image: "/images/adorable/drug_camp/drug9.jpeg"
+  },
+  {
+    id: "gal-48",
+    category: "ASACADA Campaign",
+    title: "World Drug Day Campaign Courtsey Visit by AFI delegates",
+    image: "/images/adorable/drug_camp/drug10.jpeg"
+  },
+  {
+    id: "gal-49",
+    category: "ASACADA Campaign",
+    title: "World Drug Day Campaign Courtsey Visit by AFI delegates",
+    image: "/images/adorable/drug_camp/drug11.jpeg"
+  },
+
+  // Hospital Visit
+  {
+    id: "gal-50",
+    category: "Birthday Special",
+    title: "Hospital Visit",
+    image: "/images/adorable/hospital_visit/hospital1.jpeg"
+  },
+  {
+    id: "gal-51",
+    category: "Birthday Special",
+    title: "Hospital Visit",
+    image: "/images/adorable/hospital_visit/hospital2.jpeg"
+  },
+  {
+    id: "gal-52",
+    category: "Birthday Special",
+    title: "Hospital Visit",
+    image: "/images/adorable/hospital_visit/hospital3.jpeg"
+  },
+  {
+    id: "gal-53",
+    category: "Birthday Special",
+    title: "Hospital Visit",
+    image: "/images/adorable/hospital_visit/hospital4.jpeg"
+  },
+
+  // Widows Outreach
+  {
+    id: "gal-54",
+    category: "Widows Outreach",
+    title: "End of the year widow and less privileged outreach.",
+    image: "/images/adorable/widow_outreach/widow1.jpeg"
+  },
+  {
+    id: "gal-55",
+    category: "Widows Outreach",
+    title: "End of the year widow and less privileged outreach.",
+    image: "/images/adorable/widow_outreach/widow2.jpeg"
+  },
+  {
+    id: "gal-56",
+    category: "Widows Outreach",
+    title: "End of the year widow and less privileged outreach.",
+    image: "/images/adorable/widow_outreach/widow3.jpeg"
+  },
+  {
+    id: "gal-57",
+    category: "Widows Outreach",
+    title: "End of the year widow and less privileged outreach.",
+    image: "/images/adorable/widow_outreach/widow4.jpeg"
+  },
+
+  // EXTRAS
+
+  // FACE OF ASACADA
+  {
+    id: "gal-58",
+    category: "ASACADA Campaign",
+    title: "Face of ASACADA",
+    image: "/images/adorable/face_of_asacada/face1.jpeg"
+  },
+  {
+    id: "gal-59",
+    category: "ASACADA Campaign",
+    title: "Face of ASACADA",
+    image: "/images/adorable/face_of_asacada/face2.jpeg"
+  },
+  {
+    id: "gal-60",
+    category: "ASACADA Campaign",
+    title: "Face of ASACADA",
+    image: "/images/adorable/face_of_asacada/face3.jpeg"
+  },
+
+
 ];
 
 export const coreValues = [
@@ -203,12 +482,12 @@ export interface ProgramSchema {
 export const programs: ProgramSchema[] = [
   {
     id: "asacada",
-    title: "ASACADA (Drug Rehab & Abuse Awareness)",
+    title: "ASACADA (Drug Rehab & Abuse Awareness) Campaign",
     tagline: "A Social Awareness Campaign Against Drug Abuse",
     desc: "We partner directly with institutions like the NDLEA to conduct rehabilitation programs and raise awareness to guide youth away from chemical addictions.",
     longDesc: "ASACADA is our flagship institutional intervention initiative. By collaborating closely with the National Drug Law Enforcement Agency (NDLEA), educational boards, and healthcare practitioners, we deploy comprehensive sensitization exercises directly into communities. Our framework targets early-stage teenage exposure, local cultism groups, and high-risk dependencies, providing structured paths to recovery and mental health rehabilitation.",
-    mainImage: "/images/gallery/ascada_group_img.png",
-    eventCategory: "WADA Campaign",
+    mainImage: "/images/adorable/drug_camp/drug2.jpeg",
+    eventCategory: "ASACADA Campaign",
     keyObjectives: [
       "Launch anti-drug counseling modules within secondary schools",
       "Offer community rehabilitation sponsorship pathways",
@@ -221,8 +500,8 @@ export const programs: ProgramSchema[] = [
     tagline: "Fueling Healthy Minds and Academic Progress",
     desc: "We provide healthy hot meals and supply vital academic textbooks and learning kits to children in local public primary schools.",
     longDesc: "Economic barriers should never stifle a child's right to learn. Our Child Nutrition & Food Security program addresses chronic classroom hunger by matching baseline dietary supplements with core academic tools. Through periodic food aid disbursements and institutional textbook installations, we remove obstacles keeping vulnerable children out of the classroom.",
-    mainImage: "/images/gallery/ascada_group_img.png",
-    eventCategory: "Orphanage Aid",
+    mainImage: "/images/adorable/sch_army/sch2.jpeg",
+    eventCategory: "School Outreach",
     keyObjectives: [
       "Distribute fortified meal kits to rural primary institutions",
       "Provide complete core curriculum textbooks to underprivileged children",
@@ -235,7 +514,7 @@ export const programs: ProgramSchema[] = [
     tagline: "Bringing Life-Saving Diagnostics to Under-Served Communities",
     desc: "Our volunteer medical professionals set up mobile outreach units inside rural communities to distribute life-saving medicine, screen health risks, and treat minor ailments.",
     longDesc: "Access to quality clinical guidance is critically limited in remote suburbs. Our medical wing brings emergency diagnostic testing, preventive health checkups, and standard pharmaceutical allocations right to the doorsteps of rural families. Run entirely by volunteer clinical practitioners, we offer specialized testing loops completely free of charge.",
-    mainImage: "/images/gallery/ascada_group_img.png",
+    mainImage: "/images/adorable/med_outreach/med2.jpeg",
     eventCategory: "Medical Outreach",
     keyObjectives: [
       "Perform free cardiovascular and diabetic screening tests",
@@ -245,12 +524,26 @@ export const programs: ProgramSchema[] = [
   },
   {
     id: "female-empowerment",
-    title: "Widow & Female Empowerment",
+    title: "Widows day (Hand of Hope)",
     tagline: "Restoring Dignity Through Financial and Vocational Independence",
     desc: "We supply food materials, grant vocational starter kits (sewing machines, hairdressing setups, food trading scales), and offer quick interest-free small scale loans to vulnerable widows to reclaim self-reliance.",
     longDesc: "Widows and marginalized women face steep systemic obstacles toward economic survival. This initiative transforms dependency into self-sustaining small-scale businesses. By supplying industrial equipment assets alongside interest-free micro-seed funding capital, we empower mothers to establish stable income loops to independently feed and educate their households.",
-    mainImage: "/images/gallery/ascada_women.png",
-    eventCategory: "Regional Outreach",
+    mainImage: "/images/adorable/widow_outreach/widow2.jpeg",
+    eventCategory: "Widows Outreach",
+    keyObjectives: [
+      "Allocate vocational machines (tailoring, processing, cosmetics setups)",
+      "Issue interest-free microfinance business capital grants",
+      "Deliver local basic financial management and bookkeeping training",
+    ]
+  },
+  {
+    id: "birthday-special",
+    title: "Birthday Special",
+    tagline: "Made in commemoration of the founder’s birthday",
+    desc: "We visit either a hospital, disabled home or motherless home in commemoration of the founder’s birthday",
+    longDesc: "",
+    mainImage: "/images/adorable/hospital_visit/hospital2.jpeg",
+    eventCategory: "Birthday Special",
     keyObjectives: [
       "Allocate vocational machines (tailoring, processing, cosmetics setups)",
       "Issue interest-free microfinance business capital grants",
@@ -372,17 +665,18 @@ export const upcomingEvents: EventSchema[] = [
     day: "12",
     month: "NOV",
     year: "2025",
-    category: "WADA Campaign",
-    title: "Enugu NDLEA Solidarity WADA Campaign",
-    location: "Enugu, Nigeria",
+    category: "School Outreach",
+    title: "School Outreach at Army Day Secondary School Abuja with the Founder and Barrister",
+    location: "Abuja, Nigeria",
     time: "8:00 AM - 10:00 AM",
-    desc: "Under our ASACADA initiative, our South East branch visited the Enugu NDLEA Command to build active solidarity. We coordinated efforts to launch the War Against Drug Abuse (WADA) campaign directly inside high schools, combating chemical dependencies and local cultism among teenagers.",
-    mainImage: "/images/gallery/gallery9.png",
+    desc: "",
+    mainImage: "/images/adorable/sch_army/sch1.jpeg",
     gallery: [
-      "/images/gallery/gallery9.png",
-      "/images/gallery/gallery1.png",
-      "/images/gallery/gallery4.png",
-      "/images/gallery/gallery5.png"
+      "/images/adorable/sch_army/sch2.jpeg",
+      "/images/adorable/sch_army/sch3.jpeg",
+      "/images/adorable/sch_army/sch4.jpeg",
+      "/images/adorable/sch_army/sch5.jpeg",
+      "/images/adorable/sch_army/sch6.jpeg",
     ],
     videos: [
       {
@@ -397,16 +691,16 @@ export const upcomingEvents: EventSchema[] = [
     day: "26",
     month: "JUN",
     year: "2025",
-    category: "Orphanage Aid",
-    title: "Annual AFI Outing & Orphanage Aid",
+    category: "Widows Outreach",
+    title: "End of the year widow and less privileged outreach.",
     location: "Abuja FCT, Nigeria",
     time: "9:00 AM — 4:00 PM",
-    desc: "Our global team gathered in Abuja for our annual humanitarian outing. We packaged and distributed hundreds of clothing bags, child nutrition boxes, and academic textbooks to orphanage groups and vulnerable street children in rural FCT neighborhoods.",
-    mainImage: "/images/gallery/gallery2.png",
+    desc: "",
+    mainImage: "/images/adorable/widow_outreach/widow1.jpeg",
     gallery: [
-      "/images/gallery/gallery2.png",
-      "/images/gallery/gallery6.png",
-      "/images/gallery/gallery7.png"
+      "/images/adorable/widow_outreach/widow2.jpeg",
+      "/images/adorable/widow_outreach/widow3.jpeg",
+      "/images/adorable/widow_outreach/widow4.jpeg",
     ],
     videos: [
       {
@@ -421,20 +715,20 @@ export const upcomingEvents: EventSchema[] = [
     day: "23",
     month: "JUN",
     year: "2025",
-    category: "Regional Outreach",
-    title: "Annual South East Chapter Rally & Outreach",
-    location: "Enugu, Nigeria", // Fixed spelling from 'Nigera'
+    category: "Birthday Special",
+    title: "Hospital Visit",
+    location: "Abuja, Nigeria", // Fixed spelling from 'Nigera'
     time: "8:00 AM — 3:00 PM",
-    desc: "A major regional campaign held in Enugu, bringing together state representatives from Anambra and Ebonyi. The outing focused on distributing food rations, conducting anti-drug counseling walks in markets, and distributing school supplies to vulnerable primary school kids.",
-    mainImage: "/images/gallery/gallery3.png",
+    desc: "We visit either a hospital, disabled home or motherless home in commemoration of the founder’s birthday",
+    mainImage: "/images/adorable/hospital_visit/hospital1.jpeg",
     gallery: [
-      "/images/gallery/gallery3.png",
-      "/images/gallery/gallery8.png",
-      "/images/gallery/gallery10.png"
+      "/images/adorable/hospital_visit/hospital2.jpeg",
+      "/images/adorable/hospital_visit/hospital3.jpeg",
+      "/images/adorable/hospital_visit/hospital4.jpeg",
     ],
     videos: [
       {
-        title: "South East Anti-Drug Market Awareness Walk",
+        title: "Hospital Visit Highlights",
         embedUrl: "/videos/anthem_video.mp4",
         thumbnail: "/images/gallery/gallery8.png"
       }
@@ -446,15 +740,19 @@ export const upcomingEvents: EventSchema[] = [
     month: "MAR",
     year: "2026",
     category: "Medical Outreach",
-    title: "Community Health & First Aid Outreach",
-    location: "Anambra, Nigeria",
+    title: "Impactful outreach at Buzunkure Kuje Abuja for widows, disabled and less privileged",
+    location: "Kuje, Abuja, Nigeria",
     time: "10:00 AM — 5:00 PM",
-    desc: "A specialized health campaign deploying mobile medical booths in rural Anambra markets. AFI volunteer nurses and clinical counselors delivered free physical diagnostic screening, blood pressure monitoring, first aid supplies, and child vaccination guidance.",
-    mainImage: "/images/gallery/gallery12.png",
+    desc: "Lives were touched with free medical treatments and food items",
+    mainImage: "/images/adorable/med_outreach/med1.jpeg",
     gallery: [
-      "/images/gallery/gallery12.png",
-      "/images/gallery/gallery11.png",
-      "/images/gallery/gallery4.png"
+      "/images/adorable/med_outreach/med2.jpeg",
+      "/images/adorable/med_outreach/med3.jpeg",
+      "/images/adorable/med_outreach/med4.jpeg",
+      "/images/adorable/med_outreach/med5.jpeg",
+      "/images/adorable/med_outreach/med6.jpeg",
+      "/images/adorable/med_outreach/med7.jpeg",
+      "/images/adorable/med_outreach/med8.jpeg",
     ],
     videos: [
       {
@@ -463,7 +761,132 @@ export const upcomingEvents: EventSchema[] = [
         thumbnail: "/images/gallery/gallery11.png"
       }
     ]
-  }
+  },
+  {
+    id: "evt-5",
+    day: "15",
+    month: "MAR",
+    year: "2026",
+    category: "ASACADA Campaign",
+    title: "Awareness campaign on World Drug Day Tour in Ghana 2025",
+    location: "Ghana",
+    time: "10:00 AM — 5:00 PM",
+    desc: "",
+    mainImage: "/images/adorable/ghana_camp/ghana1.jpeg",
+    gallery: [
+      "/images/adorable/ghana_camp/ghana2.jpeg",
+      "/images/adorable/ghana_camp/ghana3.jpeg",
+      "/images/adorable/ghana_camp/ghana4.jpeg",
+      "/images/adorable/ghana_camp/ghana5.jpeg",
+      "/images/adorable/ghana_camp/ghana6.jpeg",
+      "/images/adorable/ghana_camp/ghana7.jpeg",
+      "/images/adorable/ghana_camp/ghana8.jpeg",
+    ],
+    videos: [
+      {
+        title: "Ghana Tour Highlights",
+        embedUrl: "/videos/anthem_video.mp4",
+        thumbnail: "/images/gallery/gallery11.png"
+      }
+    ]
+  },
+  {
+    id: "evt-6",
+    day: "15",
+    month: "JUN",
+    year: "2025",
+    category: "School Outreach",
+    title: "School outreach in Government secondary school Nyanya and Tudun Wada Abuja",
+    location: "Nyanya and Tudun Wada, Abuja, Nigeria",
+    time: "10:00 AM — 5:00 PM",
+    desc: "We spoke on the dangers of drug abuse and cultism among our young ones in the society",
+    mainImage: "/images/adorable/sch_nyanya/nyanya1.jpeg",
+    gallery: [
+      "/images/adorable/sch_nyanya/nyanya2.jpeg",
+      "/images/adorable/sch_nyanya/nyanya3.jpeg",
+      "/images/adorable/sch_nyanya/nyanya4.jpeg",
+      "/images/adorable/sch_nyanya/nyanya5.jpeg",
+      "/images/adorable/sch_nyanya/nyanya6.jpeg",
+      "/images/adorable/sch_nyanya/nyanya7.jpeg",
+      "/images/adorable/sch_nyanya/nyanya8.jpeg",
+      "/images/adorable/sch_nyanya/nyanya9.jpeg",
+      "/images/adorable/sch_nyanya/nyanya10.jpeg",
+      "/images/adorable/sch_nyanya/nyanya11.jpeg",
+      "/images/adorable/sch_nyanya/nyanya12.jpeg",
+      "/images/adorable/sch_nyanya/nyanya13.jpeg",
+      "/images/adorable/sch_nyanya/nyanya14.jpeg",
+      "/images/adorable/sch_nyanya/nyanya15.jpeg",
+      "/images/adorable/sch_nyanya/nyanya16.jpeg",
+    ],
+    videos: [
+      {
+        title: "Video Highlights",
+        embedUrl: "/videos/anthem_video.mp4",
+        thumbnail: "/images/gallery/gallery11.png"
+      }
+    ]
+  },
+  {
+    id: "evt-7",
+    day: "15",
+    month: "MAR",
+    year: "2025",
+    category: "ASACADA Campaign",
+    title: "World Drug Day Campaign Courtsey Visit by AFI delegates",
+    location: "4 Shaw road Ikoyi Lagos",
+    time: "10:00 AM — 5:00 PM",
+    desc: "World Drug Day Campaign Courtsey Visit by AFI delegates to the Lagos State Ndlea Commander.",
+    mainImage: "/images/adorable/drug_camp/drug1.jpeg",
+    gallery: [
+      "/images/adorable/drug_camp/drug2.jpeg",
+      "/images/adorable/drug_camp/drug3.jpeg",
+      "/images/adorable/drug_camp/drug4.jpeg",
+      "/images/adorable/drug_camp/drug5.jpeg",
+      "/images/adorable/drug_camp/drug6.jpeg",
+      "/images/adorable/drug_camp/drug7.jpeg",
+      "/images/adorable/drug_camp/drug8.jpeg",
+      "/images/adorable/drug_camp/drug9.jpeg",
+      "/images/adorable/drug_camp/drug10.jpeg",
+      "/images/adorable/drug_camp/drug11.jpeg",
+    ],
+    videos: [
+      {
+        title: "Video Highlights",
+        embedUrl: "/videos/anthem_video.mp4",
+        thumbnail: "/images/gallery/gallery11.png"
+      }
+    ]
+  },
+  {
+    id: "evt-8",
+    day: "15",
+    month: "JUL",
+    year: "2026",
+    category: "ASACADA Campaign",
+    title: "Queen ASACADA Campaign",
+    location: "Nigeria",
+    time: "10:00 AM — 5:00 PM",
+    desc: `Queen ASACADA is a drug abuse awareness and advocacy programme that uses pageantry to engage young women aged 18–30 to compete for the titles of ASACADA Queen and ASACADA Ambassadors as champions against drug abuse. The initiative promotes education, sensitization, and community outreach campaigns aimed at discouraging drug abuse and encouraging healthy lifestyles among youths. 
+
+Do you have what it takes to shine on a global stage?
+Register for Queen ASACADA 4.0 and stand a chance to be an instrument for change on the dangers of drug abuse and cultism in schools across the world. Live in Maitama, Abuja
+
+Registration fee is 10,000 Naira only with Regional Auditions nation wide 
++2347036145725
+info2adorablefoundatiom@gmail.com`,
+    mainImage: "/images/adorable/face_of_asacada/face1.jpeg",
+    gallery: [
+      "/images/adorable/face_of_asacada/face2.jpeg",
+      "/images/adorable/face_of_asacada/face3.jpeg",
+    ],
+    videos: [
+      {
+        title: "Video Highlights",
+        embedUrl: "/videos/girl_child.mp4",
+        thumbnail: "/images/adorable/face_of_asacada/face1.jpeg",
+      }
+    ]
+  },
 ];
 
 export const corperatePartners = [

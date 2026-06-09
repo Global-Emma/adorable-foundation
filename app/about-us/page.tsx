@@ -36,7 +36,7 @@ const institutionalVideos = [
     title: "Pad The Girl Child Campaign",
     duration: "4:15",
     category: "Campaign Highlights",
-    thumbnail: "/images/gallery/gallery1.png",
+    thumbnail: "/images/adorable/sch_nyanya/nyanya2.jpeg",
     videoUrl: "/videos/girl_child.mp4",
   },
   {
@@ -44,7 +44,7 @@ const institutionalVideos = [
     title: "ASACADA Anti-Drug Campaign",
     duration: "6:42",
     category: "Field Impact",
-    thumbnail: "/images/gallery/gallery3.png",
+    thumbnail: "/images/adorable/drug_camp/drug3.jpeg",
     videoUrl: "/videos/anthem_video.mp4",
   }
 ];
@@ -435,7 +435,7 @@ export default function AboutPage() {
                       alt={video.title}
                       fill
                       sizes="(max-w-7xl) 33vw, 100vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-102 brightness-[90%] group-hover:brightness-[75%]"
+                      className="object-cover transition-transform duration-500 group-hover:scale-102 brightness-90% group-hover:brightness-75%"  
                     />
                     
                     {/* Centered Trigger Interface Overlay */}

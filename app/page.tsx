@@ -306,12 +306,12 @@ export default function HomePage() {
               local governments, and cities to educate and salvage our youth.
             </p>
             <div className="mt-8">
-              <a
+              <Link
                 href="/about-us"
                 className="inline-flex items-center rounded-md border border-red-600 dark:border-red-500 px-5 py-2.5 font-bold text-xs uppercase tracking-wider text-red-600 dark:text-red-500 transition-all hover:bg-red-50 dark:hover:bg-red-950/30"
               >
                 Learn More
-              </a>
+              </Link>
             </div>
           </motion.div>
 
@@ -324,7 +324,7 @@ export default function HomePage() {
           >
             <div
               className="w-full h-full bg-cover bg-center transition-transform duration-700 hover:scale-105"
-              style={{ backgroundImage: "url('/images/gallery/founder.png')" }}
+              style={{ backgroundImage: "url('/images/adorable/drug_camp/drug3.jpeg')" }}
             >
               <div className="w-full h-full bg-black/5 flex items-end p-6 text-white text-xs font-light tracking-wide bg-linear-to-t from-black/40 to-transparent">
                 <Image
@@ -488,7 +488,7 @@ export default function HomePage() {
             </p>
           </div>
           <Link
-            href={`/about-us`}
+            href={`/events`}
             className="mt-6 w-full inline-flex items-center text-xs font-bold text-red-600 dark:text-red-500 uppercase tracking-widest hover:text-red-700 dark:hover:text-red-400 transition-colors"
           >
             View All Events <span className="ml-1">→</span>
@@ -500,9 +500,15 @@ export default function HomePage() {
             viewport={{ once: true }}
             variants={staggerContainer}
           >
-            {upcomingEvents.slice(0, 3).map((ev) => (
-              <EventCard key={ev.id} event={ev} isPast />
-            ))}
+            {[...upcomingEvents].reverse().slice(0, 3).map((ev) => {
+              const date = new Date()
+              const compared = Number(ev.year) < date.getFullYear() 
+              // && ev.month < date.getMonth().toLocaleString()
+            return (
+              <EventCard key={ev.id} event={ev} isPast={compared} />
+            )
+            }
+            )}
           </motion.div>
         </div>
       </section>

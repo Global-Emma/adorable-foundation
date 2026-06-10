@@ -33,10 +33,10 @@ const staggerContainer = {
 const institutionalVideos = [
   {
     id: "vid-1",
-    title: "Pad The Girl Child Campaign",
+    title: "Pad For Purpose for the Girl Child",
     duration: "4:15",
     category: "Campaign Highlights",
-    thumbnail: "/images/adorable/sch_nyanya/nyanya2.jpeg",
+    thumbnail: "/images/adorable/sch_nyanya/nyanya5.jpeg",
     videoUrl: "/videos/girl_child.mp4",
   },
   {

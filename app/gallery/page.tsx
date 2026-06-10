@@ -53,19 +53,43 @@ export default function GalleryPage() {
   const institutionalVideos = [
     {
       id: "vid-1",
-      title: "Pad The Girl Child Campaign",
-      duration: "4:15",
+      title: "Pad For Purpose for the Girl Child",
+      duration: "3:14",
       category: "Campaign Highlights",
-      thumbnail: "/images/adorable/sch_nyanya/nyanya2.jpeg",
+      thumbnail: "/images/adorable/sch_nyanya/nyanya5.jpeg",
       videoUrl: "/videos/girl_child.mp4",
     },
     {
       id: "vid-2",
       title: "ASACADA Anti-Drug Campaign",
-      duration: "6:42",
+      duration: "1:00",
       category: "Field Impact",
       thumbnail: "/images/adorable/drug_camp/drug3.jpeg",
       videoUrl: "/videos/anthem_video.mp4",
+    },
+    {
+      id: "vid-3",
+      title: "Say no To Drugs",
+      duration: "0.08",
+      category: "ASACADA Campaign",
+      thumbnail: "/images/adorable/drug_camp/drug4.jpeg",
+      videoUrl: "/videos/drug.mp4",
+    },
+    {
+      id: "vid-4",
+      title: "Shchool Outreach at Nyanya Secondary School",
+      duration: "2.37",
+      category: "School Outreach",
+      thumbnail: "/images/adorable/sch_nyanya/nyanya9.jpeg",
+      videoUrl: "/videos/nyanya.mp4",
+    },
+    {
+      id: "vid-5",
+      title: "Queen ASACADA",
+      duration: "1.29",
+      category: "ASACADA Campaign",
+      thumbnail: "/images/adorable/face_of_asacada/face1.jpeg",
+      videoUrl: "/videos/queen_asacada1.mp4",
     },
   ];
 

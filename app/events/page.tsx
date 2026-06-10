@@ -6,7 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Herobanner from "@/components/Herobanner";
 
-import { upcomingEvents } from "@/utils/lib"; // Ensure your updated schema array is here
+import { MONTH_MAP, upcomingEvents } from "@/utils/lib"; // Ensure your updated schema array is here
 
 import { CalendarDays, Sparkles } from "lucide-react";
 import EventCard from "@/components/EventCard";
@@ -15,37 +15,12 @@ import Link from "next/link";
 // --- ANIMATION DEFINITIONS ---
 const easeQuintic: Easing = [0.22, 1, 0.36, 1];
 
-// const slideUpReveal: Variants = {
-//   hidden: { opacity: 0, y: 40 },
-//   visible: {
-//     opacity: 1,
-//     y: 0,
-//     transition: { duration: 0.7, ease: easeQuintic },
-//   },
-// };
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: { staggerChildren: 0.08 },
   },
-};
-
-// Map textual month configurations to index keys for chronological routing
-const MONTH_MAP: Record<string, number> = {
-  JAN: 0,
-  FEB: 1,
-  MAR: 2,
-  APR: 3,
-  MAY: 4,
-  JUN: 5,
-  JUL: 6,
-  AUG: 7,
-  SEP: 8,
-  OCT: 9,
-  NOV: 10,
-  DEC: 11,
 };
 
 export default function EventsPage() {

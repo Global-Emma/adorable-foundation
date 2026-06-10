@@ -1,19 +1,20 @@
 "use client";
 
-import { Easing, motion } from "framer-motion";
+import { Easing, motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Counter from "@/components/Counter";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { BookOpenIcon } from "lucide-react";
+import { BookOpenIcon, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import {
   galleryItems,
   programs,
   works,
   corperatePartners,
   upcomingEvents,
+  MONTH_MAP,
 } from "@/utils/lib";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import EventCard from "@/components/EventCard";
 
@@ -37,6 +38,7 @@ export default function HomePage() {
     },
   };
 
+  // Form & Newsletter States
   const [volunteerName, setVolunteerName] = useState("");
   const [volunteerPhone, setVolunteerPhone] = useState("");
   const [volunteerEmail, setVolunteerEmail] = useState("");
@@ -49,8 +51,31 @@ export default function HomePage() {
     msg: string;
   } | null>(null);
 
-  // Newsletter State
   const [subscriberEmail, setSubscriberEmail] = useState("");
+
+  // States for Features
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+
+  // Auto-slide effect for the Top Image Slider
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % galleryItems.length);
+    }, 4500); // Changes images smoothly every 4.5 seconds
+
+    return () => clearInterval(timer);
+  }, []);
+
+  // Manual Navigation Handlers for Slider
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % galleryItems.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide(
+      (prev) => (prev - 1 + galleryItems.length) % galleryItems.length,
+    );
+  };
 
   const handleVolunteerSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -67,7 +92,7 @@ export default function HomePage() {
           phone: volunteerPhone,
           email: volunteerEmail,
           location: volunteerLocation,
-          reason: volunteerReason
+          reason: volunteerReason,
         }),
       });
 
@@ -78,7 +103,6 @@ export default function HomePage() {
           success: true,
           msg: "✓ Request transmitted successfully!",
         });
-        // Reset form fields
         setVolunteerName("");
         setVolunteerPhone("");
         setVolunteerEmail("");
@@ -97,14 +121,12 @@ export default function HomePage() {
       });
     } finally {
       setIsSubmitting(false);
-      setFormStatus(null);
     }
     alert(`Volunteer request submitted for: ${volunteerName}`);
   };
 
-  const handleSubscribeSubmit = async(e: React.FormEvent) => {
+  const handleSubscribeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormStatus(null);
     try {
       const response = await fetch("/api/newsletter", {
         method: "POST",
@@ -112,37 +134,15 @@ export default function HomePage() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email: subscriberEmail
+          email: subscriberEmail,
         }),
       });
 
-      const data = await response.json();
-
       if (response.ok) {
-        setFormStatus({
-          success: true,
-          msg: "✓ Request transmitted successfully!",
-        });
-        // Reset form fields
-        setVolunteerName("");
-        setVolunteerPhone("");
-        setVolunteerEmail("");
-        setVolunteerLocation("");
-        setVolunteerReason("");
-      } else {
-        setFormStatus({
-          success: false,
-          msg: data.message || "Something went wrong.",
-        });
+        setSubscriberEmail("");
       }
     } catch (error) {
-      setFormStatus({
-        success: false,
-        msg: `Network failure. Please try again. ${error}`,
-      });
-    } finally {
-      setIsSubmitting(false);
-      setFormStatus(null);
+      console.error(error);
     }
     alert(`Subscribed successfully with: ${subscriberEmail}`);
   };
@@ -150,7 +150,7 @@ export default function HomePage() {
   return (
     <div className="w-full bg-white dark:bg-zinc-950 font-sans text-[#171717] dark:text-zinc-50 selection:bg-red-600 selection:text-white overflow-x-hidden transition-colors duration-300">
       {/* =========================================================================
-          1. NAVIGATION BAR (Now receiving theme control props)
+          1. NAVIGATION BAR
          ========================================================================= */}
       <Navbar />
       <audio
@@ -158,10 +158,11 @@ export default function HomePage() {
         autoPlay
         className="hidden"
       ></audio>
+
       {/* =========================================================================
           2. HERO SECTION
          ========================================================================= */}
-      <section className="relative w-full mt-20 mx-auto px-6 py-12 md:py-20 lg:py-24 bg-[url('/images/gallery/gallery4.png')] bg-cover bg-center bg-no-repeat bg-blend-overlay bg-[#000000d6] overflow-hidden">
+      <section className="relative mt-20 w-full mx-auto px-6 py-12 md:py-20 lg:py-24 bg-[url('/images/adorable/drug_camp/drug5.jpeg')] bg-cover bg-center bg-no-repeat bg-blend-overlay bg-[#000000d6] overflow-hidden">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
           {/* Text Content */}
           <motion.div
@@ -223,10 +224,9 @@ export default function HomePage() {
               <div
                 className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-102"
                 style={{
-                  backgroundImage: "url('/images/gallery/gallery4.png')",
+                  backgroundImage: "url('/images/adorable/drug_camp/drug5.jpeg')",
                 }}
               >
-                {/* Fallback overlay block matching composition image layout */}
                 <div className="w-full h-full flex items-center justify-center bg-black/10 text-white font-medium p-6 text-center text-xs backdrop-blur-[1px]">
                   [
                   <Image
@@ -275,9 +275,75 @@ export default function HomePage() {
       </section>
 
       {/* =========================================================================
+          1.5 AUTOPLAYING FEATURED HIGHLIGHTS SLIDER (At the Beginning)
+         ========================================================================= */}
+      <section className="w-full bg-gray-900 dark:bg-zinc-950 relative overflow-hidden h-85 md:h-125 lg:h-125">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0.8, scale: 1.02 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0.9, scale: 0.98 }}
+            transition={{ duration: 0.7, ease: "easeInOut" }}
+            className="absolute inset-0 w-full h-full bg-cover bg-center flex flex-col justify-end p-8 md:p-16 text-left text-white"
+            style={{
+              backgroundImage: `url(${galleryItems[currentSlide]?.image})`,
+            }}
+          >
+            {/* Dark Linear Underlay Overlay Layout Mask for Scannability */}
+            <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/40 to-transparent pointer-events-none" />
+
+            <div className="relative z-10 max-w-4xl mx-auto w-full mb-4">
+              <span className="text-[10px] md:text-xs tracking-widest font-black uppercase bg-red-600 px-3 py-1 rounded-sm inline-block mb-3 shadow-md">
+                AFI Field Archive Presence
+              </span>
+              <h2 className="font-extrabold text-2xl md:text-4xl lg:text-5xl text-white tracking-tight drop-shadow-md leading-tight">
+                Our Outreaches In Action
+              </h2>
+              <p className="mt-2 text-xs md:text-sm text-gray-200 font-medium max-w-xl drop-shadow-sm line-clamp-2">
+                Real time frame data captured directly during global
+                humanitarian outreach campaigns and drug eradication setups.
+              </p>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Manual Controller Navigation Overlays */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2.5 rounded-full bg-black/40 text-white backdrop-blur-md hover:bg-red-600 transition-colors cursor-pointer border border-white/10"
+          aria-label="Previous Slide"
+        >
+          <ChevronLeft size={22} />
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2.5 rounded-full bg-black/40 text-white backdrop-blur-md hover:bg-red-600 transition-colors cursor-pointer border border-white/10"
+          aria-label="Next Slide"
+        >
+          <ChevronRight size={22} />
+        </button>
+
+        {/* Bottom Pagination Metric Dots */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2.5">
+          {galleryItems.slice(0, 6).map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentSlide(idx)}
+              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                idx === currentSlide
+                  ? "w-8 bg-red-600"
+                  : "w-2 bg-white/40 hover:bg-white/70"
+              }`}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* =========================================================================
           4. ABOUT AFI SUMMARY SECTION
          ========================================================================= */}
-      <section className="mx-auto w-full px-6 py-16 md:py-24">
+      <section className="mx-auto w-full px-6 pt-16 md:pt-24 pb-8">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
           <motion.div
             initial="hidden"
@@ -324,7 +390,9 @@ export default function HomePage() {
           >
             <div
               className="w-full h-full bg-cover bg-center transition-transform duration-700 hover:scale-105"
-              style={{ backgroundImage: "url('/images/adorable/drug_camp/drug3.jpeg')" }}
+              style={{
+                backgroundImage: "url('/images/adorable/sch_nyanya/nyanya4.jpeg')",
+              }}
             >
               <div className="w-full h-full bg-black/5 flex items-end p-6 text-white text-xs font-light tracking-wide bg-linear-to-t from-black/40 to-transparent">
                 <Image
@@ -338,6 +406,53 @@ export default function HomePage() {
             </div>
           </motion.div>
         </div>
+      </section>
+
+      {/* =========================================================================
+          4.5 IMPACT VIDEO SHOWCASE
+         ========================================================================= */}
+      <section className="mx-auto max-w-7xl px-6 py-12">
+        <motion.div
+          className="w-full rounded-2xl h-100 md:125 lg:h-150 bg-gray-50 dark:bg-zinc-900/30 border border-gray-100 dark:border-zinc-900 p-4 md:p-8 shadow-inner"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="relative aspect-video h-full w-full rounded-xl overflow-hidden bg-zinc-950 shadow-2xl border border-gray-200/10 group">
+            {!isVideoPlaying ? (
+              <div
+                className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-cover bg-center bg-no-repeat transition-transform duration-700"
+                style={{
+                  backgroundImage: "url('/images/adorable/face_of_asacada/face1.jpeg')",
+                }}
+              >
+                <div className="absolute inset-0 bg-black/55 group-hover:bg-black/60 transition-colors" />
+
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setIsVideoPlaying(true)}
+                  className="relative z-20 w-16 h-16 md:w-20 md:h-20 flex items-center justify-center rounded-full bg-red-600 text-white shadow-xl hover:bg-red-700 cursor-pointer transition-colors"
+                >
+                  <Play size={32} className="ml-1 fill-white" />
+                </motion.button>
+
+                <p className="relative z-20 mt-4 font-bold text-sm md:text-base text-gray-100 tracking-wide uppercase px-4 text-center">
+                  Watch Our Latest Community Outreach Campaign
+                </p>
+              </div>
+            ) : (
+              <iframe
+                src="/videos/queen_asacada2.mp4"
+                title="AFI Outreach Video Player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full border-0"
+              />
+            )}
+          </div>
+        </motion.div>
       </section>
 
       {/* =========================================================================
@@ -377,7 +492,7 @@ export default function HomePage() {
                 key={index}
                 variants={fadeInUp}
                 whileHover="hover"
-                className="rounded-xl border border-gray-100 dark:border-zinc-800/60 bg-white dark:bg-zinc-900/50 p-6 text-left shadow-sm transition-all flex flex-col justify-between"
+                className="rounded-xl border border-gray-100 dark:border-zinc-900/60 bg-white dark:bg-zinc-900/50 p-6 text-left shadow-sm transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="h-10 w-10 rounded-lg bg-red-50 dark:bg-red-950/40 flex items-center justify-center text-red-600 dark:text-red-500 mb-5">
@@ -420,11 +535,10 @@ export default function HomePage() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          {/* Decorative Gradient Background Graphic */}
           <div
             className="absolute bg-center bg-blend-overlay bg-cover bg-[#000000cf] inset-0 bg-[radial-gradient(circle_at_left,rgba(220,38,38,0.15),transparent_50%)]"
             style={{
-              backgroundImage: "url('/images/gallery/sch_outreach.png')",
+              backgroundImage: "url('/images/adorable/sch_nyanya/nyanya9.jpeg')",
             }}
           />
 
@@ -451,7 +565,7 @@ export default function HomePage() {
             <div
               className="w-full h-full bg-cover bg-center mix-blend-luminosity transition-transform duration-700 hover:scale-105"
               style={{
-                backgroundImage: "url('/images/gallery/sch_outreach.png')",
+                backgroundImage: "url('/images/adorable/sch_nyanya/nyanya9.jpeg')",
               }}
             >
               <div className="w-full h-full flex items-center justify-center text-xs text-white/30 p-4 text-center backdrop-blur-[0.5px]">
@@ -469,7 +583,7 @@ export default function HomePage() {
       </section>
 
       {/* =========================================================================
-          7. UPCOMING EVENTS
+          7. RECENT EVENTS
          ========================================================================= */}
       <section className="bg-gray-50 dark:bg-zinc-900/20 py-16 md:py-24 border-y border-gray-100 dark:border-zinc-900 transition-colors duration-300">
         <div className="mx-auto max-w-7xl px-6">
@@ -500,21 +614,23 @@ export default function HomePage() {
             viewport={{ once: true }}
             variants={staggerContainer}
           >
-            {[...upcomingEvents].reverse().slice(0, 3).map((ev) => {
-              const date = new Date()
-              const compared = Number(ev.year) < date.getFullYear() 
-              // && ev.month < date.getMonth().toLocaleString()
-            return (
-              <EventCard key={ev.id} event={ev} isPast={compared} />
-            )
-            }
-            )}
+            {[...upcomingEvents]
+              .reverse()
+              .slice(0, 3)
+              .map((ev) => {
+                const date = new Date();
+                const month = MONTH_MAP[ev.month.toUpperCase()] ?? 0;
+                const compMonth = month < date.getMonth();
+                const compYear = Number(ev.year) < date.getFullYear()
+                const compared = compMonth || compYear
+                return <EventCard key={ev.id} event={ev} isPast={compared} />;
+              })}
           </motion.div>
         </div>
       </section>
 
       {/* =========================================================================
-          8. GALLERY PREVIEW
+          8. GALLERY PREVIEW (Reverted to Original Clean Static Grid)
          ========================================================================= */}
       <section className="mx-auto max-w-7xl px-6 py-16 md:py-24 text-center">
         <h2 className="font-extrabold text-3xl md:text-4xl text-gray-900 dark:text-white tracking-tight">
@@ -566,11 +682,10 @@ export default function HomePage() {
             Trusted By & Associated With
           </span>
 
-          {/* Smooth Continuous Ticker Flex Line */}
           <div className="flex overflow-hidden select-none group hover-pause border-y border-white/5 py-4 relative z-10">
-            {/* Track 1 */}
             <div className="flex shrink-0 items-stretch gap-8 min-w-full animate-marquee pr-8">
               {[
+                ...corperatePartners,
                 ...corperatePartners,
                 ...corperatePartners,
                 ...corperatePartners,
@@ -633,7 +748,6 @@ export default function HomePage() {
             className="bg-white dark:bg-zinc-900/40 border border-gray-100 dark:border-zinc-800/80 backdrop-blur-md rounded-3xl p-6 md:p-10 shadow-sm flex flex-col justify-between transition-colors duration-300"
           >
             <div className="space-y-6">
-              {/* Header Content Alignment */}
               <div className="space-y-1.5">
                 <span className="text-[10px] font-black uppercase tracking-widest text-red-600 dark:text-red-500 block">
                   MAKE AN IMPACT
@@ -647,7 +761,6 @@ export default function HomePage() {
                 </p>
               </div>
 
-              {/* Form Fields Architecture */}
               <form onSubmit={handleVolunteerSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <input
@@ -706,7 +819,7 @@ export default function HomePage() {
               </form>
 
               {formStatus?.success === true && (
-                <p className="text-red-600 font-semibold text-sm">
+                <p className="text-green-600 font-semibold text-sm">
                   {formStatus.msg}
                 </p>
               )}
@@ -721,11 +834,9 @@ export default function HomePage() {
             transition={{ duration: 0.5, delay: 0.1, ease: cubicBezierEase }}
             className="bg-[#0b1120] dark:bg-zinc-900/20 rounded-3xl p-6 md:p-10 shadow-lg flex flex-col justify-between border border-gray-900 dark:border-zinc-800/60 text-white relative overflow-hidden transition-colors duration-300"
           >
-            {/* Decorative Subtle Background Glow Effect */}
             <div className="absolute top-0 right-0 w-48 h-48 bg-red-600/10 rounded-full blur-3xl pointer-events-none" />
 
             <div className="space-y-6 z-10">
-              {/* Header Meta Content */}
               <div className="space-y-2">
                 <span className="text-[10px] font-black uppercase tracking-widest text-red-500 block">
                   STAY UPDATED
@@ -742,7 +853,6 @@ export default function HomePage() {
                 </p>
               </div>
 
-              {/* Inline Form Block Execution Stage */}
               <form
                 onSubmit={handleSubscribeSubmit}
                 className="flex flex-col sm:flex-row items-center gap-2 pt-2"
@@ -765,9 +875,7 @@ export default function HomePage() {
               </form>
             </div>
 
-            {/* Core Footer Brand Identity & Message Mapping */}
             <div className="pt-8 mt-8 border-t border-white/5 flex items-center gap-3.5 z-10">
-              {/* Logo Mask Framework */}
               <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0 border border-white/10">
                 <Image
                   src="/images/ascada_logo.png"
@@ -776,13 +884,12 @@ export default function HomePage() {
                   width={100}
                   height={100}
                   onError={(e) => {
-                    // Fallback visual token block if local asset is building
                     (e.target as HTMLElement).style.display = "none";
                   }}
                 />
               </div>
               <p className="text-[11px] text-gray-400 font-medium leading-relaxed italic">
-                {`"A Social Awareness Campaign Against Drug Abuse (ASACADA) —{" "}`}
+                {`"A Social Awareness Campaign Against Drug Abuse (ASACADA) — `}
                 <span className="text-gray-200 not-italic font-bold">
                   Save our tomorrow, today.
                 </span>
@@ -794,7 +901,7 @@ export default function HomePage() {
       </div>
 
       {/* =========================================================================
-          11. REGISTRATION & CONTEXT FOOTER
+          12. REGISTRATION & CONTEXT FOOTER
          ========================================================================= */}
       <Footer />
     </div>

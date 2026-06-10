@@ -538,7 +538,7 @@ export const programs: ProgramSchema[] = [
   },
   {
     id: "birthday-special",
-    title: "Birthday Special",
+    title: "Hospital Visit",
     tagline: "Made in commemoration of the founder’s birthday",
     desc: "We visit either a hospital, disabled home or motherless home in commemoration of the founder’s birthday",
     longDesc: "",
@@ -830,7 +830,7 @@ export const upcomingEvents: EventSchema[] = [
     id: "evt-7",
     day: "15",
     month: "MAR",
-    year: "2025",
+    year: "2026",
     category: "ASACADA Campaign",
     title: "World Drug Day Campaign Courtsey Visit by AFI delegates",
     location: "4 Shaw road Ikoyi Lagos",
@@ -859,13 +859,13 @@ export const upcomingEvents: EventSchema[] = [
   },
   {
     id: "evt-8",
-    day: "15",
-    month: "JUL",
+    day: "26",
+    month: "JUN",
     year: "2026",
     category: "ASACADA Campaign",
-    title: "Queen ASACADA Campaign",
-    location: "Nigeria",
-    time: "10:00 AM — 5:00 PM",
+    title: "Queen ASACADA 4.0",
+    location: "Merit House, Maitama Abuja, Nigeria",
+    time: "10:00 AM Prompt",
     desc: `Queen ASACADA is a drug abuse awareness and advocacy programme that uses pageantry to engage young women aged 18–30 to compete for the titles of ASACADA Queen and ASACADA Ambassadors as champions against drug abuse. The initiative promotes education, sensitization, and community outreach campaigns aimed at discouraging drug abuse and encouraging healthy lifestyles among youths. 
 
 Do you have what it takes to shine on a global stage?
@@ -881,8 +881,13 @@ info2adorablefoundatiom@gmail.com`,
     ],
     videos: [
       {
-        title: "Video Highlights",
-        embedUrl: "/videos/girl_child.mp4",
+        title: "Queen ASACADA 4.0",
+        embedUrl: "/videos/queen_asacada1.mp4",
+        thumbnail: "/images/adorable/face_of_asacada/face1.jpeg",
+      },
+      {
+        title: "Queen ASACADA 4.0",
+        embedUrl: "/videos/queen_asacada2.mp4",
         thumbnail: "/images/adorable/face_of_asacada/face1.jpeg",
       }
     ]
@@ -897,3 +902,19 @@ export const corperatePartners = [
   "FirstBank",
   "UBA",
 ]
+
+// Map textual month configurations to index keys for chronological routing
+export const MONTH_MAP: Record<string, number> = {
+  JAN: 0,
+  FEB: 1,
+  MAR: 2,
+  APR: 3,
+  MAY: 4,
+  JUN: 5,
+  JUL: 6,
+  AUG: 7,
+  SEP: 8,
+  OCT: 9,
+  NOV: 10,
+  DEC: 11,
+};

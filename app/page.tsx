@@ -162,7 +162,7 @@ export default function HomePage() {
       {/* =========================================================================
           2. HERO SECTION
          ========================================================================= */}
-      <section className="relative mt-20 w-full mx-auto px-6 py-12 md:py-20 lg:py-24 bg-[url('/images/adorable/drug_camp/drug5.jpeg')] bg-cover bg-center bg-no-repeat bg-blend-overlay bg-[#000000d6] overflow-hidden">
+      <section className="relative mt-20 w-full mx-auto px-6 py-12 md:py-20 lg:py-24 bg-[url('/images/adorable/sch_army/sch5.jpeg')] bg-cover bg-center bg-no-repeat bg-blend-overlay bg-[#000000d6] overflow-hidden">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
           {/* Text Content */}
           <motion.div
@@ -224,7 +224,7 @@ export default function HomePage() {
               <div
                 className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-102"
                 style={{
-                  backgroundImage: "url('/images/adorable/drug_camp/drug5.jpeg')",
+                  backgroundImage: "url('/images/adorable/sch_army/sch5.jpeg')",
                 }}
               >
                 <div className="w-full h-full flex items-center justify-center bg-black/10 text-white font-medium p-6 text-center text-xs backdrop-blur-[1px]">
@@ -391,7 +391,7 @@ export default function HomePage() {
             <div
               className="w-full h-full bg-cover bg-center transition-transform duration-700 hover:scale-105"
               style={{
-                backgroundImage: "url('/images/adorable/sch_nyanya/nyanya4.jpeg')",
+                backgroundImage: "url('/images/adorable/sch_nyanya/nyanya11.jpeg')",
               }}
             >
               <div className="w-full h-full bg-black/5 flex items-end p-6 text-white text-xs font-light tracking-wide bg-linear-to-t from-black/40 to-transparent">
@@ -503,6 +503,8 @@ export default function HomePage() {
                     alt={prog.title}
                     width={400}
                     height={250}
+                    loading="lazy"
+                    fill
                     className="w-full h-40 hover:scale-105 transition-transform rounded-lg mb-5"
                   />
                   <h3 className="font-bold text-lg text-gray-900 dark:text-white tracking-tight">

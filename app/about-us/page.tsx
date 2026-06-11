@@ -362,6 +362,8 @@ export default function AboutPage() {
                       <Image
                         src={prog.mainImage}
                         alt={prog.title}
+                        fill
+                        loading="lazy"
                         width={400}
                         height={250}
                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
@@ -434,6 +436,7 @@ export default function AboutPage() {
                       src={video.thumbnail}
                       alt={video.title}
                       fill
+                      priority
                       sizes="(max-w-7xl) 33vw, 100vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-102 brightness-90% group-hover:brightness-75%"  
                     />

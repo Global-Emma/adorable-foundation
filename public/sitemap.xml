@@ -20,4 +20,12 @@
     <loc>https://www.adorablefoundation.com/founder</loc>
     <priority>1.0</priority>
   </url>
+  <url>
+    <loc>https://www.adorablefoundation.com/partners</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.adorablefoundation.com/gallery</loc>
+    <priority>1.0</priority>
+  </url>
 </urlset>

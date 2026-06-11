@@ -343,6 +343,7 @@ export default function FounderPage() {
                       src={video.thumbnail}
                       alt={video.title}
                       fill
+                      priority
                       sizes="(max-w-7xl) 33vw, 100vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-102 brightness-90 group-hover:brightness-75"
                     />

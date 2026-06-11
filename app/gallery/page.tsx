@@ -201,9 +201,11 @@ export default function GalleryPage() {
                   <Image
                     src={activeImage.image}
                     alt={activeImage.title}
+                    fill
                     width={300}
                     height={250}
                     className="w-full max-h-[60vh] object-contain select-none"
+                    priority
                   />
                 </div>
 

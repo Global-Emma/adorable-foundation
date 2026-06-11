@@ -15,6 +15,7 @@ import {
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Link from "next/link";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -48,12 +49,12 @@ export default function SingleEventPage({ params }: PageProps) {
         <p className="text-sm text-gray-500 mt-2 mb-6">
           The requested campaign archive does not exist or has been shifted.
         </p>
-        <a
+        <Link
           href="/events"
           className="rounded-md bg-red-600 px-5 py-2.5 font-bold text-xs uppercase tracking-wider text-white shadow-xs"
         >
           Return to Events List
-        </a>
+        </Link>
       </div>
     );
   }
@@ -95,13 +96,13 @@ export default function SingleEventPage({ params }: PageProps) {
         {/* 1. Header Hero Panel */}
         <section className="relative w-full border-b border-gray-100 dark:border-zinc-900/60 bg-white dark:bg-zinc-900/40 backdrop-blur-md px-6 py-8 md:py-12">
           <div className="mx-auto max-w-7xl">
-            <a
+            <Link
               href="/events"
               className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-zinc-400 hover:text-red-600 dark:hover:text-red-500 transition-colors mb-6 group"
             >
               <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />{" "}
               Back to events
-            </a>
+            </Link>
 
             <div className="flex flex-col md:flex-row md:items-center gap-6">
               {/* Elegant Calendar Badge Layout Component */}
@@ -194,6 +195,7 @@ export default function SingleEventPage({ params }: PageProps) {
                       src={imgUrl}
                       alt={`Event capture ${index + 1}`}
                       fill
+                      loading="lazy"
                       sizes="(max-w-7xl) 33vw, 50vw"
                       className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                     />

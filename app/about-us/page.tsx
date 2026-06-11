@@ -362,8 +362,6 @@ export default function AboutPage() {
                       <Image
                         src={prog.mainImage}
                         alt={prog.title}
-                        fill
-                        loading="lazy"
                         width={400}
                         height={250}
                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"

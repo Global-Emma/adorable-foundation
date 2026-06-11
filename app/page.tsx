@@ -503,8 +503,6 @@ export default function HomePage() {
                     alt={prog.title}
                     width={400}
                     height={250}
-                    loading="lazy"
-                    fill
                     className="w-full h-40 hover:scale-105 transition-transform rounded-lg mb-5"
                   />
                   <h3 className="font-bold text-lg text-gray-900 dark:text-white tracking-tight">

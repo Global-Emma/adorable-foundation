@@ -24,7 +24,7 @@ const Footer = () => {
               <br />
               <p>
                 <span className="font-bold">Dual Branch Structure:</span> Head
-                Office in Abuja, South East Regional HQ in Enugu.
+                Office in Abuja, South East Regional HQ in Awka.
               </p>
             </h6>
           </div>
@@ -125,7 +125,7 @@ const Footer = () => {
                   className="hover:text-white transition-colors"
                   href={"https://wa.me/2347013777177"}
                 >
-                  +234 701 377 7177
+                  +234 701 377 7177 / +234 902 266 9910
                 </Link>
               </li>
               <li>

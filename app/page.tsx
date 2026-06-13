@@ -196,7 +196,7 @@ export default function HomePage() {
 
             <motion.div
               variants={fadeInUp}
-              className="mt-8 flex flex-wrap gap-4"
+              className="mt-8 flex flex-wrap justify-center lg:justify-start gap-4"
             >
               <a
                 href="/donations"
@@ -206,7 +206,7 @@ export default function HomePage() {
               </a>
               <a
                 href="#volunteer"
-                className="rounded-md border text-center lg:text-start border-gray-300 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-6 py-3 font-bold text-xs uppercase tracking-wider text-gray-700 dark:text-zinc-300 transition-all hover:bg-gray-50 dark:hover:bg-zinc-800 hover:border-gray-400 dark:hover:border-zinc-700"
+                className="rounded-md border border-gray-300 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-6 py-3 font-bold text-xs uppercase tracking-wider text-gray-700 dark:text-zinc-300 transition-all hover:bg-gray-50 dark:hover:bg-zinc-800 hover:border-gray-400 dark:hover:border-zinc-700"
               >
                 Become a Volunteer
               </a>
